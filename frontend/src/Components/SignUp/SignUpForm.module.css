@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+#SignUpWrapper {
+    padding-top: 20px;
+}
+
+.Logo {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
+#SignUpCard {
+    width: 400px;
+    height: 590px;
+    display: block;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+#SignUpH2 {
+    text-align: center;
+    color: black;
+    padding-bottom: 20px;
+}
+.SignUpForm {
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formGroup {
+    padding: 20px;
+}
+
+.formLabel {
+    float: left;
+    
+}
+
+.formControl {
+   
+border-radius: 5px;
+}
+
+.formSelect {
+    width: 130px;
+}
+#signUpBtn{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    width: 90%;
+    border-radius: 20px;
+}
+
+#loginLinkDiv {
+    padding-top: 30px;
+    border-radius: 25px;
+    text-align: center;
+}

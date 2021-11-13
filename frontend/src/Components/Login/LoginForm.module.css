@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+#LoginWrapper {
+    padding-top: 20px;
+}
+
+.Logo {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+#LoginCard {
+    width: 400px;
+    height: 550px;
+    display: block;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+#loginH2 {
+    text-align: center;
+    color: black; 
+}
+
+.loginForm {
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formGroup {
+    padding: 20px;
+}
+
+.formLabel {
+    float: left;
+    
+}
+
+.formControl {
+   
+border-radius: 5px;
+}
+
+#ForgotPassword, #SignUpLink {
+padding-top: 30px;
+text-align: center;
+}
+
+.LoginBtn {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    width: 90%;
+    border-radius: 20px;
+}
+
