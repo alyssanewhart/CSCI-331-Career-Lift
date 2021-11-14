@@ -18,6 +18,7 @@ export default class ReviewsDAO {
 
   static async addUser(user) {
     try {
+      // check if email already in use
       users.findOne({ email: user.email }).then(async existingUser => {
         if (existingUser) {
           return res.status(400).json({ email: "Email already exists" });
