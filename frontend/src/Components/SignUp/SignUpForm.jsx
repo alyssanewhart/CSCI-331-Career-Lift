@@ -28,7 +28,6 @@ export default function SignUpForm() {
             userType: userType,
         }
 
-        console.log(data)
         UserDataService.createUser(data)
         .then(response => {
           console.log(response.data);
