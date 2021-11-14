@@ -1,6 +1,7 @@
 import mongodb from "mongodb"
 const ObjectId = mongodb.ObjectID
 import encryptPassword from "../security/encryptPassword.js"
+import verifyEmail from "../security/verifyEmail.js"
 
 let users
 
@@ -24,6 +25,10 @@ export default class ReviewsDAO {
         } else {
           
       user.password = await encryptPassword.encrypt(user.password)      // encrypt password
+      let validEmail = await verifyEmail.verify(user.email)
+
+      // need to alert frontend
+      if (validEmail) {
 
       const userDoc = {                   // create new user document
         firstName: user.firstName,
@@ -32,10 +37,18 @@ export default class ReviewsDAO {
         password: user.password,
         userType: user.userType
         }
-
+      
       return await users.insertOne(userDoc)   // insert document into DB
     }
+
+    // need a better way to handle an invalid email input
+    else {
+      throw("invalid email")
+    }
+  }
+  
     }) 
+  
 
    } catch (e) {
       console.error(`Unable to create user: ${e}`)
