@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
 import { useHistory } from "react-router";
-import UnsuccessfulLoginAlert from "../Alerts/UnsuccessfulLogin"
+
 
 
 const LoginForm  = ({setUser}) => {
@@ -22,7 +22,7 @@ const LoginForm  = ({setUser}) => {
 
         } */
 
-        console.log(email, password)
+      //  console.log(email, password)
 
         function submit(e) {
             e.preventDefault();
@@ -35,8 +35,9 @@ const LoginForm  = ({setUser}) => {
             // authenticate user
             UserDataService.authenticateUser(data)
             .then(response => {
-              console.log(response.data.status);
-              console.log(response.data);
+             {/*console.log('response data')
+             // console.log(response.data.status);
+            // console.log(response.data); */}
 
               // return successful login status and user id
               if (response.data.status === "success") {

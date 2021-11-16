@@ -24,11 +24,11 @@ export default class ReviewsDAO {
       try {
       let existing = false;
       let existingUser = await users.findOne({ email: user.email })
+
       if (existingUser) {
-          console.log(existing)
           existing = true;
-          console.log(existingUser)
-        } else {
+        } 
+        else {
           
       user.password = await encryptPassword.encrypt(user.password)      // encrypt password
       

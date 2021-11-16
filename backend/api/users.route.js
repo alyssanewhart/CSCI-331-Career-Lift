@@ -8,7 +8,7 @@ router.route("/").get((req, res) => res.send("Hello World"))            // make 
 
 router
   .route("/signup")
-  .post(UsersCtrl.apiPostUser)
+  .post(UsersCtrl.createUser)
 
 router
   .route("/login")

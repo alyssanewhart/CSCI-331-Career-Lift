@@ -3,7 +3,7 @@ import verifyPassword from "../security/verifyPassword.js"
 
 export default class UsersController {
 
-  static async apiPostUser(req, res) {
+  static async createUser(req, res) {
     try {
       const userInfo = {
         firstName: req.body.firstName,
@@ -33,40 +33,40 @@ export default class UsersController {
     static async checkLogin(req, res) {
 
     try {
-      const userInfo = {
+      const loginInfo = {
         email: req.body.email,
         password: req.body.password,
       }
-      console.log(userInfo)
 
       // make sure user with email credential exists
       const UserResponse = await UsersDAO.authenticateUser(
-        userInfo
+        loginInfo
       )
-      console.log(UserResponse)
+      
+      // if email is not valid
+      if(UserResponse === null) {
+        res.json({ status: "not found" })
+      }
 
       if (UserResponse) {
         let hashedPassword = UserResponse.password;    // password in DB
 
         // verify that user entered password matches account password
-        const match = await verifyPassword.checkMatch(userInfo.password, hashedPassword)
+        const match = await verifyPassword.checkMatch(loginInfo.password, hashedPassword)
 
         // if passwords match
         if (match) {
           res.json({ status: "success", user_id: UserResponse._id})
 
           console.log(match)
-
-         // console.log("match")
         }
 
+        // if password not valid
         else {
           res.json({ status: "not found" })
         }
 
       }
-      //res.json({ status: "success" })
-      
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
