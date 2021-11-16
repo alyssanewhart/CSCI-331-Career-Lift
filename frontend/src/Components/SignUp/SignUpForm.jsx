@@ -4,6 +4,7 @@ import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
+import { useHistory } from "react-router";
 
 
 {/* https://react-icons.github.io/react-icons/icons?name=bs*/}
@@ -16,10 +17,12 @@ export default function SignUpForm() {
       const [email, setEmail] = useState("");   
       const [password, setPassword] = useState("");  
       const [userType, setUserType] = useState("");     
-      
+      const history = useHistory()
+
       function submit(e) {
         e.preventDefault();
 
+        if(verifyEmailFormat(e)) {
         var data = {
             firstName: firstName,
             lastName: lastName,
@@ -30,12 +33,35 @@ export default function SignUpForm() {
 
         UserDataService.createUser(data)
         .then(response => {
-          console.log(response.data);
+          if(response.data.status === "duplicate email") {
+              alert("Email address is associated with an existing account. Please login or use another email address")
+          }
+
+          if(response.data.status === "success") {
+            history.push("/Success")
+          }
         })
         .catch(e => {
           console.log(e);
         });
+    }
+    else {
+        alert("Please enter a valid MSU email address")
+    }
+      }
 
+      // verify valid email format
+      function verifyEmailFormat(e) {
+        let studentRegex = "^[a-zA-Z0-9]+.[a-zA-Z0-9]+@student.montana.edu$"
+
+        let professorRegex = "^[a-zA-Z0-9]+.[a-zA-Z0-9]+@montana.edu$"
+        if (email.match(studentRegex) ||  email.match(professorRegex)) {
+            return true
+        }
+
+        else {
+            return false
+        }
       }
         return (
             <div id={styles.SignUpWrapper}>
