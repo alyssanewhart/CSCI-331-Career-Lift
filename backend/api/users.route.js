@@ -10,9 +10,10 @@ router
   .route("/user")
   .post(UsersCtrl.apiPostUser)
 
-/*router
+router
   .route("/login")
-  .get(UsersCtrl.checkLogin)
-*/
+  .post(UsersCtrl.checkLogin)
+  
+
 
 export default router

@@ -1,3 +1,4 @@
+import { response } from "express"
 import mongodb from "mongodb"
 const ObjectId = mongodb.ObjectID
 import encryptPassword from "../security/encryptPassword.js"
@@ -17,19 +18,22 @@ export default class ReviewsDAO {
     }
   }
 
+  // add user to DB
   static async addUser(user) {
-    try {
       // check if email already in use
-      users.findOne({ email: user.email }).then(async existingUser => {
-        if (existingUser) {
-          return res.status(400).json({ email: "Email already exists" });
+      try {
+      let existing = false;
+      let existingUser = await users.findOne({ email: user.email })
+      if (existingUser) {
+          console.log(existing)
+          existing = true;
+          console.log(existingUser)
         } else {
           
       user.password = await encryptPassword.encrypt(user.password)      // encrypt password
-      let validEmail = await verifyEmail.verify(user.email)
-
+      
       // need to alert frontend
-      if (validEmail) {
+     
 
       const userDoc = {                   // create new user document
         firstName: user.firstName,
@@ -40,40 +44,45 @@ export default class ReviewsDAO {
         }
       
       return await users.insertOne(userDoc)   // insert document into DB
-    }
 
-    // need a better way to handle an invalid email input
-    else {
-      throw("invalid email")
-    }
+    // need a better way to handle an already in use email input
   }
-  
-    }) 
-  
+  if (existing)
+  return "duplicate email"
 
-   } catch (e) {
+}
+catch(e) {
       console.error(`Unable to create user: ${e}`)
       return { error: e }
-    }
-  }
+}
+  
+}
 
-  // Unfinished 
-  static async checkUser(user) {
+
+
+   
+  
+  // } catch (e) {
+   //   console.error(`Unable to create user: ${e}`)
+  //    return { error: e }
+    
+  
+
+  // authenticate user in DB
+  static async authenticateUser(user) {
     try {
-      const usersDoc = { 
+      const userDoc = { 
         email: user.email,
         password: user.password,
         }
 
-        /*
-        // Print all documents in the collection
-        console.log(users.find({ email: usersDoc.email }).toArray()
+        /*console.log(users.find({ email: userDoc.email,  }).toArray()
         .then(items => {
           items.forEach(console.log)
         })
         )  */
 
-      return await users.findOne({ email: usersDoc.email })
+      return await users.findOne({ email: userDoc.email }) // check for user with matching email in DB
     } catch (e) {
       console.error(`Unable to find user: ${e}`)
       return { error: e }
