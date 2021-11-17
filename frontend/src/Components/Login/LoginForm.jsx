@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
 import { useHistory } from "react-router";
-<<<<<<< HEAD
-=======
-
->>>>>>> ab2e15b76d59c452ba011a2e8c4e612839064135
 
 
 const LoginForm  = ({setUser}) => {
@@ -17,19 +13,7 @@ const LoginForm  = ({setUser}) => {
         const [password, setPassword] = useState("");
         const [loginUser, setLoginUser] = useState("");
         
-<<<<<<< HEAD
         console.log(email, password)
-=======
-        /*const onChange = e => {
-            e.preventDefault();
-            console.log(e.target)
-            setUser({...user, [e.target] : e.target.value})
-            console.log(user);
-
-        } */
-
-      //  console.log(email, password)
->>>>>>> ab2e15b76d59c452ba011a2e8c4e612839064135
 
         function submit(e) {
             e.preventDefault();
@@ -42,14 +26,8 @@ const LoginForm  = ({setUser}) => {
             // authenticate user
             UserDataService.authenticateUser(data)
             .then(response => {
-<<<<<<< HEAD
                 console.log(response.data)
               console.log(response.data.status);
-=======
-             {/*console.log('response data')
-             // console.log(response.data.status);
-            // console.log(response.data); */}
->>>>>>> ab2e15b76d59c452ba011a2e8c4e612839064135
 
               // return successful login status and user id
               if (response.data.status === "success") {
