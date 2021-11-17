@@ -34,6 +34,7 @@ export default function SignUpForm() {
         UserDataService.createUser(data)
         .then(response => {
           if(response.data.status === "duplicate email") {
+              console.log(response.data)
               alert("Email address is associated with an existing account. Please login or use another email address")
           }
 

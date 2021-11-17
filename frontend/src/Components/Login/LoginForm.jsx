@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
 import { useHistory } from "react-router";
-import UnsuccessfulLoginAlert from "../Alerts/UnsuccessfulLogin"
 
 
 const LoginForm  = ({setUser}) => {
@@ -14,14 +13,6 @@ const LoginForm  = ({setUser}) => {
         const [password, setPassword] = useState("");
         const [loginUser, setLoginUser] = useState("");
         
-        /*const onChange = e => {
-            e.preventDefault();
-            console.log(e.target)
-            setUser({...user, [e.target] : e.target.value})
-            console.log(user);
-
-        } */
-
         console.log(email, password)
 
         function submit(e) {
@@ -35,15 +26,16 @@ const LoginForm  = ({setUser}) => {
             // authenticate user
             UserDataService.authenticateUser(data)
             .then(response => {
+                console.log(response.data)
               console.log(response.data.status);
-              console.log(response.data);
 
               // return successful login status and user id
               if (response.data.status === "success") {
-                setUser({user_id: response.data.user_id, loginStatus: response.data.status});
+                 
+                setUser({user_data: response.data.user, loginStatus: response.data.status});
 
-                // redirect to profile page upon authentication
-                history.push("/UserProfile")
+                // redirect to create profile page upon authentication
+                history.push("/CreateProfile")
 
               }
               else {

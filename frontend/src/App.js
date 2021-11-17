@@ -9,21 +9,28 @@ import Home from './Components/Pages/Home.jsx';
 import profile from './Components/Pages/profile';
 import userProfile from './Components/Pages/userProfile';
 import SignUpSuccess from './Components/SignUp/Success';
-
-
+import CreateProfile from './Components/CreateProfile/CreateProfile';
+//import useAuth from "./context";
 
 function App() {
 
 // stores login status and user_id
 const [user, setUser] = useState({});
+console.log(user.user_id);
+if (user.loginStatus === "success") {
+ // handleAuth();
+}
 //console.log(user)
+
+//const [auth, handleAuth] = useAuth(useAuth);
 
 if (user.loginStatus === "success") {
     return ( 
       <Router>
         <Switch>
         <Route exact path="/" component={userProfile}/>
-          <Route exact path="/userProfile" component={userProfile} />
+        <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
+          {/* <Route exact path="/userProfile" component={userProfile} /> */}
 	      </Switch>
       </Router>
       
