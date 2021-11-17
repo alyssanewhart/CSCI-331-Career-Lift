@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components//Login/LoginForm';
 import SignUpForm from './Components//SignUp/SignUpForm';
@@ -8,28 +8,49 @@ import Navigation from './Components/PublicNavigation/Navigation.jsx'
 import Home from './Components/Pages/Home.jsx';
 import profile from './Components/Pages/profile';
 import userProfile from './Components/Pages/userProfile';
+import SignUpSuccess from './Components/SignUp/Success';
+import CreateProfile from './Components/CreateProfile/CreateProfile';
+//import useAuth from "./context";
 
+function App() {
 
+// stores login status and user_id
+const [user, setUser] = useState({});
+console.log(user.user_id);
+if (user.loginStatus === "success") {
+ // handleAuth();
+}
+//console.log(user)
 
-class LoginApp extends React.Component {
+//const [auth, handleAuth] = useAuth(useAuth);
 
-
-
-  render() {
-
+if (user.loginStatus === "success") {
     return ( 
       <Router>
-        <Navigation />
         <Switch>
-		      <Route exact path="/" component={Home}/>
-				  <Route  exact path="/SignUp" component={SignUpForm}/>
-          <Route  exact path="/Login" component={LoginForm}/>
-          <Route exact path="/userProfile" component={userProfile} />
+        <Route exact path="/" component={userProfile}/>
+        <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
+          {/* <Route exact path="/userProfile" component={userProfile} /> */}
 	      </Switch>
       </Router>
       
     );
-  }
 }
 
-export default LoginApp;
+else {
+  
+  return (
+  <Router>
+     <Navigation />
+        <Switch>
+		      <Route exact path="/" component={Home}/>
+				  <Route  exact path="/SignUp" component={SignUpForm}/>
+          <Route exact path = "/Success" component={SignUpSuccess}/>
+          <Route  exact path="/Login">< LoginForm setUser={setUser}/></Route>
+	      </Switch>
+      </Router>
+  )};
+  }
+  
+
+export default App;

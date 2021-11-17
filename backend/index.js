@@ -1,27 +1,39 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import UsersDAO from "./dao/usersDAO.js"
-dotenv.config()
-const MongoClient = mongodb.MongoClient
+import express from "express";
 
-const port = process.env.PORT || 8000
+const app = express();
 
-MongoClient.connect(
-  process.env.CSCI331_DB_URI,
-  {
-        maxPoolSize: 50,
-        wtimeoutMS: 2500,
-        useNewUrlParser: true
-    } 
-  )
-  .catch(err => {
-    console.error(err.stack)
-    process.exit(1)
-  })
-  .then(async client => {
-    await UsersDAO.injectDB(client)
-    app.listen(port, () => {
-      console.log(`listening on port ${port}`)
-    })
-  })
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import helmet from "helmet";
+
+
+import  userRoute from "./routes/users.js";
+import  authRoute from "./routes/auth.js";
+
+
+dotenv.config();
+
+mongoose.connect(
+    process.env.MongoDB_URL,
+     {useNewUrlParser: true,
+      useUnifiedTopology: true },
+     () => {
+    console.log("Connected to MongoDB")
+});
+
+//mildware
+
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
+
+//routes
+
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+
+app.listen(8800, () =>{
+    console.log("Server is running")
+})

@@ -1,6 +1,7 @@
 import styles from'./ProfileTopbar.module.css'
 import { Search, Person, Chat, Notifications, Home, PeopleAlt, Work, Message } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
+import {Button}  from 'react-bootstrap';
 
 export default function Topbar() {
     return (
