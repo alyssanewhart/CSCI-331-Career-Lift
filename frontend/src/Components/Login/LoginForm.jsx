@@ -5,19 +5,23 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
 import { useHistory } from "react-router";
-
+//import AuthProvider, {useAuth} from "../../context";
 
 const LoginForm  = ({setUser}) => {
         const history = useHistory()
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [loginUser, setLoginUser] = useState("");
+       // const [auth, handleAuth] = useAuth(useAuth);
         
         console.log(email, password)
+
+    
 
         function submit(e) {
             e.preventDefault();
     
+           // console.log(auth)
             var data = {
                 email: email,
                 password: password,
@@ -31,8 +35,15 @@ const LoginForm  = ({setUser}) => {
 
               // return successful login status and user id
               if (response.data.status === "success") {
-                 
-                setUser({user_data: response.data.user, loginStatus: response.data.status});
+                //  handleAuth();
+                
+               
+                // console.log(auth)
+               //  console.log(handleAuth)
+                setUser(response.data);
+                // store the user in localStorage
+                localStorage.setItem('user', response.data)
+                console.log(response.data)
 
                 // redirect to create profile page upon authentication
                 history.push("/CreateProfile")
@@ -48,13 +59,13 @@ const LoginForm  = ({setUser}) => {
             .catch(e => {
               console.log(e);
             });
-    
+    //<button onClick={handleAuth}>Change auth</button>
           }
     
         return (
             <div id ={styles.LoginWrapper}>
                 <Card id={styles.LoginCard}>
-                    <Form className={styles.LoginForm} onSubmit={submit}>
+                    <Form className={styles.LoginForm} onSubmit={submit} >
                         <img src={Logo} alt="Logo" className={styles.Logo}/>
                         <h2 id={styles.loginH2}>Login</h2>
                             <Form.Group className="mb-3" controlId="formBasicEmail" className={styles.formGroup}>
@@ -65,7 +76,7 @@ const LoginForm  = ({setUser}) => {
                                     </Col>
                                 </Row>
                             </Form.Group>
-                
+                    
 
                             <Form.Group className="mb-3" controlId="formBasicPassword" class={styles.formGroup}>
                                 <Row>
@@ -76,14 +87,14 @@ const LoginForm  = ({setUser}) => {
                                 </Row>
                     </Form.Group>
 
-                        <Button className={styles.LoginBtn} variant="primary" type="submit">
+                        <Button className={styles.LoginBtn} variant="primary" type="submit"> 
                         Login </Button>
                         
                         <div id={styles.ForgotPassword}><a href='#'><b>Forgot password?</b></a></div>
                         <div id={styles.SignUpLink}>Need an account?&nbsp;<Link to="/SignUp"><b>Sign Up</b></Link></div>
                     </Form>
                 </Card> 
-            </div>    
+            </div>   
         );
  
         }

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import UserDataService from "../../services/user.js";
 import { useHistory } from "react-router";
+import blankProfileImg from "../Images/blank_profile.png";
+
 
 
 {/* https://react-icons.github.io/react-icons/icons?name=bs*/}
@@ -29,8 +31,10 @@ export default function SignUpForm() {
             email: email,
             password: password,
             userType: userType,
+            profilePicture: blankProfileImg
         }
 
+        console.log(data)
         UserDataService.createUser(data)
         .then(response => {
           if(response.data.status === "duplicate email") {

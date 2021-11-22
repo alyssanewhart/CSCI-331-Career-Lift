@@ -1,13 +1,14 @@
 import express from "express"
-import User from "../models/user.js";
+import File from "../models/file.js";
 import bcyrpt from "bcrypt";
+import multer from "multer";
 
 
 const router = express.Router();
 
 router.route("/").get((req,res) => res.send("hello world"))
 
-//upadte-User
+//update-User
 
 router.put("/:id", async(req, res) =>{
     if(req.body.userId === req.params.id || req.body.isAdmin){

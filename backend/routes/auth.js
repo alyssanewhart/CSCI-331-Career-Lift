@@ -31,7 +31,8 @@ router.post("/signup", async (req, res)=> {
                 name: name, 
                 email:req.body.email,
                 password: hashedPassword,
-                userType: req.body.userType
+                userType: req.body.userType,
+                profilePicture: req.body.profilePicture
             }); 
 
             // Add new user to DB
@@ -50,6 +51,7 @@ router.post("/signup", async (req, res)=> {
         res.status(500).json({ error: e.message })
         }
     })
+
 
 // login route
 router.post("/login", async (req, res)=>{

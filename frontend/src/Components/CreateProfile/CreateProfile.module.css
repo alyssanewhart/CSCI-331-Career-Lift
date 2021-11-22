@@ -5,3 +5,9 @@
     display: block;
     margin: auto;
 }
+
+#profileimage {
+    margin-left: 20px;
+    border-radius: 50%;
+    border: 5px solid darkgray;
+}

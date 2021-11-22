@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components//Login/LoginForm';
 import SignUpForm from './Components//SignUp/SignUpForm';
@@ -10,24 +10,43 @@ import profile from './Components/Pages/profile';
 import userProfile from './Components/Pages/userProfile';
 import SignUpSuccess from './Components/SignUp/Success';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
+import Topbar from "./Components/profileTopbar/Topbar"
+//import AuthProvider, {useAuth} from "./context";
 //import useAuth from "./context";
 
 function App() {
 
 // stores login status and user_id
-const [user, setUser] = useState({});
-console.log(user.user_id);
-if (user.loginStatus === "success") {
+const [user, setUser] = useState("");
+//const [auth, handleAuth] = useAuth(useAuth);
+//console.log(user.name);
+/*if (user.loginStatus === "success") {
  // handleAuth();
-}
+} */
+useEffect(() => {
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    const foundUser = loggedInUser;
+    setUser(foundUser);
+    console.log(user)
+  }
+}, []);
 //console.log(user)
 
 //const [auth, handleAuth] = useAuth(useAuth);
-
-if (user.loginStatus === "success") {
+console.log(user)
+//if (user.loginStatus === "success") {
+  console.log(user)
+  //console.log(auth)
+ // if (auth) {
+ //   console.log(auth)
+ // <Route  exact path="/Login"><AuthProvider>< LoginForm /></AuthProvider></Route>
+ if (user) {
     return ( 
       <Router>
+        <Topbar setUser = {setUser}/>
         <Switch>
+
         <Route exact path="/" component={userProfile}/>
         <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
           {/* <Route exact path="/userProfile" component={userProfile} /> */}
@@ -41,12 +60,13 @@ else {
   
   return (
   <Router>
+    
      <Navigation />
         <Switch>
 		      <Route exact path="/" component={Home}/>
 				  <Route  exact path="/SignUp" component={SignUpForm}/>
           <Route exact path = "/Success" component={SignUpSuccess}/>
-          <Route  exact path="/Login">< LoginForm setUser={setUser}/></Route>
+          <Route  exact path="/Login">< LoginForm setUser = {setUser}/></Route>
 	      </Switch>
       </Router>
   )};

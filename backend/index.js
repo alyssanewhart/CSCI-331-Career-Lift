@@ -10,6 +10,7 @@ import helmet from "helmet";
 
 import  userRoute from "./routes/users.js";
 import  authRoute from "./routes/auth.js";
+import  fileRoute from "./routes/file.js";
 
 
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(morgan("common"));
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/file", fileRoute);
 
 app.listen(8800, () =>{
     console.log("Server is running")

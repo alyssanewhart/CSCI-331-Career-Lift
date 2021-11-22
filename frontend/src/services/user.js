@@ -1,4 +1,4 @@
-import http from "../http-common";
+import http from "../auth-http-common";
 
 class UserDataService {
 

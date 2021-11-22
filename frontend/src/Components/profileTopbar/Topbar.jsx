@@ -2,8 +2,18 @@ import styles from'./ProfileTopbar.module.css'
 import { Search, Person, Chat, Notifications, Home, PeopleAlt, Work, Message } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 import {Button}  from 'react-bootstrap';
+import { useHistory } from "react-router";
 
-export default function Topbar() {
+const Topbar = ({setUser}) => {
+
+    const history = useHistory()
+
+    const handleLogout = () => {
+        setUser()
+        localStorage.clear();
+        history.push("/")
+      };
+
     return (
         <div className={styles.topbarContainer}>
             <div className={styles.topbarLeft}>
@@ -55,7 +65,9 @@ export default function Topbar() {
                         <span className={styles.topbarIconBadge}>1</span>
                         <span className={styles.topbarIconText}>Notifications</span>
                     </div>
+                    <button onClick={handleLogout}>logout</button>
                 </div>
+                
                 
                 <img src="/assets/person/1.jpeg" alt="" className={styles.topbarImg}/>
                  
@@ -69,3 +81,4 @@ export default function Topbar() {
 
     );
 }
+export default Topbar;

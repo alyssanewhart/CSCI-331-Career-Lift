@@ -9,7 +9,6 @@ import Rightbar from "../profileRightbar/Rightbar"
 export default function userProfile() {
     return ( 
     <>
-        <Topbar/>
         <div className = {styles.userProfile}>
             <Leftbar/>
             <div className={styles.userProfileRight}>
