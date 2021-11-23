@@ -1,0 +1,51 @@
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    overflow: hidden;
+    margin-top: 300px;
+    
+
+}
+
+.terms{
+    font-family: 'Poppins',sans-serif;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.terms:hover{
+    background-color: rgba(128, 128, 128, 0.493);
+}
+
+.privacy{
+    font-family: 'Poppins',sans-serif;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+
+}
+
+.privacy:hover{
+    background-color: rgba(128, 128, 128, 0.493);
+}
+
+.contact{
+    font-family: 'Poppins',sans-serif;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+
+}
+
+.contact:hover{
+    background-color: rgba(128, 128, 128, 0.493);
+}

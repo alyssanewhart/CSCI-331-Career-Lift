@@ -11,6 +11,16 @@ import userProfile from './Components/Pages/userProfile';
 import SignUpSuccess from './Components/SignUp/Success';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
 import Topbar from "./Components/profileTopbar/Topbar"
+import Navbar from './components/Navbar/Navbar'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MainSection from './components/HomePage/mainSection';
+import learnMore from './components/aboutUs/learnMore';
+import history from './history';
+import privacyPolicy from './components/privacyPolicy/privacyPolicy';
+import terms from './components/terms/terms';
+import contactUs from './components/contactUs/contactUs';
+import footer from './components/footer/footer';
 //import AuthProvider, {useAuth} from "./context";
 //import useAuth from "./context";
 
@@ -63,7 +73,13 @@ else {
     
      <Navigation />
         <Switch>
-		      <Route exact path="/" component={Home}/>
+          <Route path='/Navbar' component={Navbar}/>
+          <Route path='/footer' component={footer}/>
+          <Route path='/mainSection' exact component={MainSection}/>
+          <Route path='/learnMore'  component={learnMore}/>
+          <Route path='/contactUs' component={contactUs}/>
+          <Route path='/terms' component={terms}/>
+          <Route path='/privacyPolicy' component={privacyPolicy}/>
 				  <Route  exact path="/SignUp" component={SignUpForm}/>
           <Route exact path = "/Success" component={SignUpSuccess}/>
           <Route  exact path="/Login">< LoginForm setUser = {setUser}/></Route>
