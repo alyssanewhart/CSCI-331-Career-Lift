@@ -3,7 +3,7 @@ import styles from './LoginForm.module.css';
 import {Row, Col, Card, Form, Button, Alert }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
-import UserDataService from "../../services/user.js";
+import UserDataService from "../../services/auth.js";
 import { useHistory } from "react-router";
 //import AuthProvider, {useAuth} from "../../context";
 
