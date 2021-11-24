@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styles from './CreateProfile.module.css';
 import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -9,72 +9,66 @@ import Topbar from "../profileTopbar/Topbar"
 import axios from "axios";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
+import UserDataService from "../../services/user";
+import { ContactSupportOutlined } from "@material-ui/icons";
 
 
+// recieve user from App.js
 const CreateProfile = ({user}) => {
-    //console.log(user)
-
+ 
     const [selectedImage, setSelectedImage] = useState(null);
+    const [jobTitle, setJobTitle] = useState("");
+    const [company, setCompany] = useState("");
+    const [careerInterest, setCareerInterest] = useState("");
+    const [classOf, setClassOf] = useState("");
+    const [lookingFor, setLookingFor] = useState("");
+
     const history = useHistory()
 
-    const [defaultImage, setDefaultImage] = useState(user.user.profilePicture);
-    console.log(user.user.profilePicture)
-   
-    console.log(user.user.name)
-   // console.log(defaultImage)
-
+    const [defaultImage, setDefaultImage] = useState(user.profilePicture);
+  
     function updateProfileImg(e) {
         e.preventDefault();
         console.log("selected image printed")
         console.log(selectedImage)
         console.log(defaultImage)
+}
 
+    // submit user's data to DB
+    function submit(e) {
+      e.preventDefault()
 
-        const data = new FormData()
-        data.append('myFile', selectedImage)
-        data.append('user_id', user.user._id)
+      // create data
+      var data = {
+        userId: user._id,
+        jobTitle: jobTitle,
+        careerInterest: careerInterest,
+        company: company,
+        lookingFor: lookingFor,
+        classOf: classOf,
+      }
 
-        const config = {
-          headers: {
-            'content-type': 'multipart/form-data'
-        }
-    }
+      const url = `/${user._id}`;
+      console.log(url)
 
-    console.log(" Form Data ")
-    for (var key of data.entries()) {
-        console.log(key[0] + ', ' + key[1]);
-
-    }
-
-    console.log("config")
-    console.log(config)
-
-    axios.post("http://localhost:8800/api/file/upload", data, config)
-        .then((response) => {
-            alert("The file is successfully uploaded");
-        }).catch((error) => {
-    });  
-
-   /*   axios.post('http://localhost:8800/api/users/profilepicture', data)
-      .then(res => {
-        console.log(res);
-        console.log({name: res.data.name, path: 'http://localhost:8800/api/users' + res.data.path})
-      })
-      .catch(err => console.log(err)) */
-      
-    /* UserDataService.updateProfilePicture(data)
+      // call service to update user's information in the DB
+      UserDataService.updateUser(url, data)
         .then(response => {
-          console.log("response")
-          console.log(response)
-        })
+              console.log(response.data);
+              if(response.data === "success") {
+                // redirect to create profile page upon updating profile
+                history.push("/UserProfile")
+              }
+            }
+        )
         .catch(e => {
-            console.log(e)
-        }); */
+          console.log(e);
+        });
     }
-      
-      return (
-        <div id={styles.pageWrapper}>
 
+    return (
+        <div id={styles.pageWrapper}>
+        
         {selectedImage && (
             <Container id={styles.CreateProfileWrapper}>
             <Card id={styles.cardWrapper}>
@@ -100,22 +94,22 @@ const CreateProfile = ({user}) => {
                 </Col>
                 <Col xs={6}>
                   <div>
-                  <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.user.name}</b></h1></b></p>
-                  <p id={styles.userType}><b>User Type:</b> {user.user.userType}</p>
+                  <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.name}</b></h1></b></p>
+                  <p id={styles.userType}><b>User Type:</b> {user.userType}</p>
                   </div>
                   <br/>
                   </Col>
-                    <Form>
+                    <Form onSubmit={submit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Container>
                           <Row>
                             <Col> 
                               <Form.Label class={styles.formLabel}>Job Title</Form.Label>
-                                <Form.Control class = "form-control" type="jobTitle" placeholder=""  />
+                                <Form.Control class="form-control" type="jobTitle" placeholder="" onChange={(e) => setJobTitle(e.target.value)} />
                                   </Col>
                                     <Col> 
                                       <Form.Label class={styles.formLabel}>Company</Form.Label>
-                                        <Form.Select aria-label="Company">
+                                        <Form.Select aria-label="Company" onChange={(e) => setCompany(e.target.value)}>
                                           <option>Select Company</option>
                                            <option value="Google">Google</option>
                                            <option value="Amazon">Amazon</option>
@@ -129,7 +123,7 @@ const CreateProfile = ({user}) => {
                                   <Row>
                                     <Col> 
                                       <Form.Label class={styles.formLabel}>Career Interest</Form.Label>
-                                      <Form.Select aria-label="Company">
+                                      <Form.Select aria-label="Company" onChange={(e) => setCareerInterest(e.target.value)}>
                                         <option>Select Option</option>
                                         <option value="Software Engineering">Software Engineering</option>
                                         <option value="Bitcoin">Bitcoin</option>
@@ -142,7 +136,7 @@ const CreateProfile = ({user}) => {
                                     </Col>
                                     <Col xs={6}> 
                                       <Form.Label class={styles.formLabel}>Class Of</Form.Label>
-                                      <Form.Select aria-label="Company" required="true">
+                                      <Form.Select aria-label="Company" required={true} onChange={(e) => setClassOf(e.target.value)}>
                                         <option>Graduating Year</option>
                                         <option value="2021">2021</option>
                                         <option value="2020">2020</option>
@@ -172,7 +166,7 @@ const CreateProfile = ({user}) => {
                                   <Row>
                                     <Col xs={6}>
                                       <Form.Label class={styles.formLabel}>Looking For</Form.Label>
-                                        <Form.Select aria-label="Company">
+                                        <Form.Select aria-label="Company" onChange={(e) => setLookingFor(e.target.value)}>
                                           <option>Select Option</option>
                                           <option value="Mentorship">Mentorship</option>
                                           <option value="Mentees">Mentees</option>
@@ -224,22 +218,22 @@ const CreateProfile = ({user}) => {
                   </Col>
                   <Col xs={6}>
                     <div>
-                    <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.user.name}</b></h1></b></p>
-                    <p id={styles.userType}><b>User Type:</b> {user.user.userType}</p>
+                    <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.name}</b></h1></b></p>
+                    <p id={styles.userType}><b>User Type:</b> {user.userType}</p>
                     </div>
                     <br/>
                     </Col>
-                      <Form>
+                      <Form onSubmit={submit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Container>
                             <Row>
                               <Col> 
                                 <Form.Label class={styles.formLabel}>Job Title</Form.Label>
-                                  <Form.Control class = "form-control" type="jobTitle" placeholder=""  />
+                                  <Form.Control class = "form-control" type="jobTitle" placeholder="" onChange={(e) => setJobTitle(e.target.value)}  />
                                     </Col>
                                       <Col> 
                                         <Form.Label class={styles.formLabel}>Company</Form.Label>
-                                          <Form.Select aria-label="Company">
+                                          <Form.Select aria-label="Company" onChange={(e) => setCompany(e.target.value)}>
                                             <option>Select Company</option>
                                              <option value="Google">Google</option>
                                              <option value="Amazon">Amazon</option>
@@ -253,7 +247,7 @@ const CreateProfile = ({user}) => {
                                     <Row>
                                       <Col> 
                                         <Form.Label>Career Interest</Form.Label>
-                                        <Form.Select aria-label="Company">
+                                        <Form.Select aria-label="Company" onChange={(e) => setCareerInterest(e.target.value)}>
                                           <option>Select Option</option>
                                           <option value="Software Engineering">Software Engineering</option>
                                           <option value="Bitcoin">Bitcoin</option>
@@ -266,7 +260,7 @@ const CreateProfile = ({user}) => {
                                       </Col>
                                       <Col xs={6}> 
                                         <Form.Label id={styles.classOf}>Class Of</Form.Label>
-                                        <Form.Select aria-label="Company" required="true">
+                                        <Form.Select aria-label="Company" required={true} onChange={(e) => setClassOf(e.target.value)}>
                                           <option>Graduating Year</option>
                                           <option value="2021">2021</option>
                                           <option value="2020">2020</option>
@@ -296,7 +290,7 @@ const CreateProfile = ({user}) => {
                                     <Row>
                                       <Col xs={6}>
                                         <Form.Label class={styles.formLabel}>Looking For</Form.Label>
-                                          <Form.Select aria-label="Company">
+                                          <Form.Select aria-label="Company" onChange={(e) => setLookingFor(e.target.value)}>
                                             <option>Select Option</option>
                                             <option value="Mentorship">Mentorship</option>
                                             <option value="Mentees">Mentees</option>

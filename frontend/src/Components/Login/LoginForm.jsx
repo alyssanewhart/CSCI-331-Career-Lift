@@ -3,7 +3,7 @@ import styles from './LoginForm.module.css';
 import {Row, Col, Card, Form, Button, Alert }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
-import UserDataService from "../../services/auth.js";
+import AuthDataService from "../../services/auth.js";
 import { useHistory } from "react-router";
 //import AuthProvider, {useAuth} from "../../context";
 
@@ -28,22 +28,17 @@ const LoginForm  = ({setUser}) => {
             }
     
             // authenticate user
-            UserDataService.authenticateUser(data)
+            AuthDataService.authenticateUser(data)
             .then(response => {
                 console.log(response.data)
               console.log(response.data.status);
 
               // return successful login status and user id
               if (response.data.status === "success") {
-                //  handleAuth();
-                
-               
-                // console.log(auth)
-               //  console.log(handleAuth)
-                setUser(response.data);
-                // store the user in localStorage
-                localStorage.setItem('user', response.data)
-                console.log(response.data)
+                setUser(response.data.user);
+                // store the user_id in localStorage for access on refesh
+                localStorage.setItem('user', response.data.user._id)
+                console.log(response.data.user)
 
                 // redirect to create profile page upon authentication
                 history.push("/CreateProfile")

@@ -1,5 +1,5 @@
 import express from "express"
-import File from "../models/file.js";
+import User from "../models/user.js";
 import bcyrpt from "bcrypt";
 import multer from "multer";
 
@@ -12,7 +12,9 @@ router.route("/").get((req,res) => res.send("hello world"))
 
 router.put("/:id", async(req, res) =>{
     if(req.body.userId === req.params.id || req.body.isAdmin){
-        
+        console.log("true")
+        console.log(req.params.id)
+        console.log(req.body)
         // for updatig Password and using bcrypt again
         if(req.body.password){
             try{
@@ -25,11 +27,12 @@ router.put("/:id", async(req, res) =>{
 
         try{
             const user = await User.findByIdAndUpdate(req.params.id, {
+              
                 //automatically sets all inputs inside the body
                 $set:req.body,
             });
 
-            res.status(200).json("Account succesfully Updated")
+            res.status(200).json("success")
         }catch(err){
             res.status(500).json(err);
         }

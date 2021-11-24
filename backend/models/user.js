@@ -49,6 +49,23 @@ const UserSchema =  new mongoose.Schema({
 
         },
         
+        jobTitle: {
+            type: String,
+        },
+
+        careerInterest: {
+            type: String,
+        },
+
+        company: {
+            type: String,
+        },
+
+        lookingFor: {
+            type: String,
+        },
+
+
         classOf:{
             type:String,
             //DATE
