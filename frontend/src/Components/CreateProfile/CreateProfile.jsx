@@ -7,6 +7,8 @@ import { useHistory } from "react-router";
 import Topbar from "../profileTopbar/Topbar"
 // import UserDataService from "../../services/users.js";
 import axios from "axios";
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import IconButton from '@material-ui/core/IconButton';
 
 
 const CreateProfile = ({user}) => {
@@ -22,17 +24,18 @@ const CreateProfile = ({user}) => {
    // console.log(defaultImage)
 
     function updateProfileImg(e) {
-         e.preventDefault();
+        e.preventDefault();
         console.log("selected image printed")
         console.log(selectedImage)
+        console.log(defaultImage)
 
 
         const data = new FormData()
         data.append('myFile', selectedImage)
         data.append('user_id', user.user._id)
 
-      const config = {
-        headers: {
+        const config = {
+          headers: {
             'content-type': 'multipart/form-data'
         }
     }
@@ -52,11 +55,6 @@ const CreateProfile = ({user}) => {
         }).catch((error) => {
     });  
 
-    
-
-    
-
-
    /*   axios.post('http://localhost:8800/api/users/profilepicture', data)
       .then(res => {
         console.log(res);
@@ -73,77 +71,258 @@ const CreateProfile = ({user}) => {
             console.log(e)
         }); */
     }
-        
-   
-  
-    
+      
       return (
-        <div>
-          <h1>Profile Picture</h1>
+        <div id={styles.pageWrapper}>
 
         {selectedImage && (
-            <div>
-            <img alt="not fount" width={"150px"} height={"150px"}src={URL.createObjectURL(selectedImage)} id={styles.profileimage}/>
-            <br />
-            <b>Name:</b> {user.user.name} &nbsp;
-            <b>User Type:</b> {user.user.userType}
-           {/* <button onClick={()=>setSelectedImage(null)}>Remove</button> */}
-            </div>
-          )}
-
-{defaultImage && (
-            <div>
-            <img alt="not fount" width={"150px"} height={"150px"}src={defaultImage} id={styles.profileimage}/>
-            <br />
-            <b>Name:</b> {user.user.name} &nbsp;
-            <b>User Type:</b> {user.user.userType}
-           {/* <button onClick={()=>setSelectedImage(null)}>Remove</button> */}
-           </div>
-          )} 
-
-         
-           
-          
-
-        
-     
-          <br />
-          <input
-            type="file"
-            name="image"
-            accept=".png, .jpg, .jpeg"
-            onChange={(event) => {
-              console.log(event.target.files[0]);
-              setSelectedImage(null);           // clear previous photo
-              setSelectedImage(event.target.files[0]);
-           //   setDefaultImage(null);
-              updateProfileImg(event);
-            }}
-          />
-
-
-
-          <div id={styles.CreateProfileWrapper}>
-          {/*}  <Card>
-                            <Container>
-                                <Row>
+            <Container id={styles.CreateProfileWrapper}>
+            <Card id={styles.cardWrapper}>
+              <Row>
+                <Col xs={6}>
+                  <br/>
+                    <img alt="not fount" width={"150px"} height={"150px"}src={URL.createObjectURL(selectedImage)} id={styles.profileimage}/>
+                      <div id={styles.imageUploadDiv}><input accept="image/*" id="icon-button-file"
+                        type="file" style={{ display: 'none' }} 
+                        onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setSelectedImage(null);           // clear previous photo
+                        setSelectedImage(event.target.files[0]);
+                        updateProfileImg(event);
+                      }}/>
+                      </div>
+                      <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture"
+                          component="span" id={styles.cameraIcon}>
+                        <PhotoCamera />
+                        </IconButton>
+                      </label>
+                </Col>
+                <Col xs={6}>
+                  <div>
+                  <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.user.name}</b></h1></b></p>
+                  <p id={styles.userType}><b>User Type:</b> {user.user.userType}</p>
+                  </div>
+                  <br/>
+                  </Col>
+                    <Form>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Container>
+                          <Row>
+                            <Col> 
+                              <Form.Label class={styles.formLabel}>Job Title</Form.Label>
+                                <Form.Control class = "form-control" type="jobTitle" placeholder=""  />
+                                  </Col>
                                     <Col> 
-                                        <b>Name:</b> {user.user_data.name}
+                                      <Form.Label class={styles.formLabel}>Company</Form.Label>
+                                        <Form.Select aria-label="Company">
+                                          <option>Select Company</option>
+                                           <option value="Google">Google</option>
+                                           <option value="Amazon">Amazon</option>
+                                            <option value="Netflix">Netflix</option>
+                                            <option value="iRobot">iRobot</option>
+                                            <option value="Microsoft">Microsoft</option>
+                                             <option value="Apple">Apple</option>
+                                         </Form.Select>
                                     </Col>
+                                  </Row>
+                                  <Row>
                                     <Col> 
-                                        <b>User Type:</b> {user.user_data.userType}
-                                     </Col>
-                                </Row>
-                            </Container>
-          </Card> */}
-
-          
-                </div> 
-         
-          <br /> 
-         
-        </div>
-      )
-
-};
+                                      <Form.Label class={styles.formLabel}>Career Interest</Form.Label>
+                                      <Form.Select aria-label="Company">
+                                        <option>Select Option</option>
+                                        <option value="Software Engineering">Software Engineering</option>
+                                        <option value="Bitcoin">Bitcoin</option>
+                                        <option value="Job Data Science">Data Science</option>
+                                        <option value="Cybersecurity">Cybersecurity</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="UI/UX">UI/UX</option> 
+                                        <option value="Quantum Computing">Quantum Computing</option>      
+                                      </Form.Select>
+                                    </Col>
+                                    <Col xs={6}> 
+                                      <Form.Label class={styles.formLabel}>Class Of</Form.Label>
+                                      <Form.Select aria-label="Company" required="true">
+                                        <option>Graduating Year</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2001">2001</option>
+                                         <option value="2000">2000</option>
+                                      </Form.Select>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col xs={6}>
+                                      <Form.Label class={styles.formLabel}>Looking For</Form.Label>
+                                        <Form.Select aria-label="Company">
+                                          <option>Select Option</option>
+                                          <option value="Mentorship">Mentorship</option>
+                                          <option value="Mentees">Mentees</option>
+                                          <option value="Job Opportunities">Job Opportunities</option>
+                                          <option value="Advice">Advice</option>
+                                          <option value="Connections">Connections</option>
+                                          <option value="Employees">Employees</option>      
+                                        </Form.Select>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col xs={6}>
+                                      <Button id={styles.saveBtn} variant="primary" type="submit" >
+                                      Save</Button>
+                                    </Col>
+                                  </Row>
+                                </Container>
+                              </Form.Group>
+                            </Form>
+                            </Row>
+                           
+                     {/* <button onClick={()=>setSelectedImage(null)}>Remove</button> */}
+                     </Card>
+                     </Container>
+                    )} 
+{defaultImage && (
+              <Container id={styles.CreateProfileWrapper}>
+              <Card id={styles.cardWrapper}>
+                <Row>
+                  <Col xs={6}>
+                    <br/>
+                    <img alt="not found" width={"150px"} height={"150px"}src={defaultImage} id={styles.profileimage}/>
+                        <div id={styles.imageUploadDiv}><input accept="image/*" id="icon-button-file"
+                          type="file" style={{ display: 'none' }} 
+                          onChange={(event) => {
+                          console.log(event.target.files[0]);
+                          setSelectedImage(null);           // clear previous photo
+                          setSelectedImage(event.target.files[0]);
+                          setDefaultImage(null);
+                          updateProfileImg(event);
+                        }}/>
+                        </div>
+                        <label htmlFor="icon-button-file">
+                          <IconButton color="primary" aria-label="upload picture"
+                            component="span" id={styles.cameraIcon}>
+                          <PhotoCamera />
+                          </IconButton>
+                        </label>
+                  </Col>
+                  <Col xs={6}>
+                    <div>
+                    <p id={styles.h1paragraph}><b><h1 id={styles.nameh1}><br/><b>{user.user.name}</b></h1></b></p>
+                    <p id={styles.userType}><b>User Type:</b> {user.user.userType}</p>
+                    </div>
+                    <br/>
+                    </Col>
+                      <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Container>
+                            <Row>
+                              <Col> 
+                                <Form.Label class={styles.formLabel}>Job Title</Form.Label>
+                                  <Form.Control class = "form-control" type="jobTitle" placeholder=""  />
+                                    </Col>
+                                      <Col> 
+                                        <Form.Label class={styles.formLabel}>Company</Form.Label>
+                                          <Form.Select aria-label="Company">
+                                            <option>Select Company</option>
+                                             <option value="Google">Google</option>
+                                             <option value="Amazon">Amazon</option>
+                                              <option value="Netflix">Netflix</option>
+                                              <option value="iRobot">iRobot</option>
+                                              <option value="Microsoft">Microsoft</option>
+                                               <option value="Apple">Apple</option>
+                                           </Form.Select>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col> 
+                                        <Form.Label>Career Interest</Form.Label>
+                                        <Form.Select aria-label="Company">
+                                          <option>Select Option</option>
+                                          <option value="Software Engineering">Software Engineering</option>
+                                          <option value="Bitcoin">Bitcoin</option>
+                                          <option value="Job Data Science">Data Science</option>
+                                          <option value="Cybersecurity">Cybersecurity</option>
+                                          <option value="Web Development">Web Development</option>
+                                          <option value="UI/UX">UI/UX</option> 
+                                          <option value="Quantum Computing">Quantum Computing</option>      
+                                        </Form.Select>
+                                      </Col>
+                                      <Col xs={6}> 
+                                        <Form.Label id={styles.classOf}>Class Of</Form.Label>
+                                        <Form.Select aria-label="Company" required="true">
+                                          <option>Graduating Year</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2014">2014</option>
+                                          <option value="2013">2013</option>
+                                          <option value="2012">2012</option>
+                                          <option value="2011">2011</option>
+                                          <option value="2010">2010</option>
+                                          <option value="2009">2009</option>
+                                          <option value="2008">2008</option>
+                                          <option value="2007">2007</option>
+                                          <option value="2006">2006</option>
+                                          <option value="2005">2005</option>
+                                          <option value="2004">2004</option>
+                                          <option value="2003">2003</option>
+                                          <option value="2002">2002</option>
+                                          <option value="2001">2001</option>
+                                           <option value="2000">2000</option>
+                                        </Form.Select>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col xs={6}>
+                                        <Form.Label class={styles.formLabel}>Looking For</Form.Label>
+                                          <Form.Select aria-label="Company">
+                                            <option>Select Option</option>
+                                            <option value="Mentorship">Mentorship</option>
+                                            <option value="Mentees">Mentees</option>
+                                            <option value="Job Opportunities">Job Opportunities</option>
+                                            <option value="Advice">Advice</option>
+                                            <option value="Connections">Connections</option>
+                                            <option value="Employees">Employees</option>      
+                                          </Form.Select>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col xs={6}>
+                                        <Button id={styles.saveBtn} variant="primary" type="submit" >
+                                        Save</Button>
+                                      </Col>
+                                    </Row>
+                                  </Container>
+                                </Form.Group>
+                              </Form>
+                              </Row>
+                             
+                       {/* <button onClick={()=>setSelectedImage(null)}>Remove</button> */}
+                       </Card>
+                       </Container>
+                      )}
+                  </div>
+                  )
+                };
 export default CreateProfile
