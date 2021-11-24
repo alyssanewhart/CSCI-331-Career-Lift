@@ -48,12 +48,6 @@ const UserSchema =  new mongoose.Schema({
             max:80
 
         },
-
-        status:{
-            type:String,
-            //default:["Student", "Alumni", "Proffessor"],
-            enum:[1,2,3]
-        }, 
         
         classOf:{
             type:String,
