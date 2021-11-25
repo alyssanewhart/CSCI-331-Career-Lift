@@ -1,7 +1,5 @@
 import React from "react";
 import contactUsStyles from './contactUs.module.css';
-import Footer from "../footer/footer";
-import Navbar from '../Navbar/Navbar';
 
 //PHP for a working contact form
 
@@ -12,8 +10,6 @@ function contactUs() {
     return(
         
         <>
-        <Navbar/>
-        <Footer/>
         <div className={contactUsStyles.contactForm}>
 
         <h1 className={contactUsStyles.contactHeader}>

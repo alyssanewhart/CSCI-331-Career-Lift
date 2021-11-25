@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url('https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fHdhbGxwYXBlciUyMGJhY2tncm91bmR8ZW58MHx8MHxibHVlfA%3D%3D&auto=format&fit=crop&w=800&q=60');
+    background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdoaXRlJTIwYW5kJTIwYmx1ZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=1296&q=60');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -13,7 +13,7 @@ body {
   
   .rotatingTextAdjective {
     font-family: "font-family: 'Playfair Display', serif";
-    color: rgb(255, 255, 255);
+    color: rgb(2, 68, 209);
     font-size: 150px;
     font-style: normal;
     font-weight: 700;
@@ -92,13 +92,13 @@ body {
     font-family: 'font-family: 'Playfair Display', serif';
     font-weight: bold;
     font-size: 125px;
-    color: rgb(255, 255, 255);
+    color: rgb(2, 68, 209);
 
   } 
 
   .learnMore {
     border-radius: 2rem;
-    background-color:#78bce4;
+    background-color:rgb(2, 68, 209);
     border:rgb(136, 137, 224);
     padding: 20px;
     width: 200px;
@@ -119,15 +119,17 @@ body {
 
   .learnMore:hover{
       font-size: 30px;
-      background-color: rgb(31, 148, 168);
+      background-color: rgb(64, 2, 209);
       padding-right: 24px;
       padding-left:8px;
       text-decoration: none;
+      color: white;
   }
   .learnMore:hover:after{
     opacity: 1;
     right: 10px;
     text-decoration: none;
+    color: white;
 }
 
   .learnMore:after{
@@ -140,5 +142,6 @@ body {
     height: 10px;
     width: 10px;
     text-decoration: none;
+    color: white;
   }
 

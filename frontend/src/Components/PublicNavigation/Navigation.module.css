@@ -2,3 +2,12 @@
     width: 80px;
     height: 80px;
 }
+
+.navbarcontainer{
+    background-color: rgba(255, 255, 255, 0.445);
+}
+
+.links:hover{
+    color: rgb(2, 68, 209);
+
+}

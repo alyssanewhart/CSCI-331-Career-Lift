@@ -7,8 +7,6 @@ import Footer from "../footer/footer";
 function terms() {
     return(
         <>
-        <Navbar/>
-        <Footer/>
         <div className={termsStyles.terms}>
             This is the terms page.
         </div>

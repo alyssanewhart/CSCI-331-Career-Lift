@@ -1,5 +1,6 @@
 {
   "name": "login",
+  "homepage": "http://localhost:3000/alyssanewhart/combined-ap/mainSection.jsx",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
+  
 }
+

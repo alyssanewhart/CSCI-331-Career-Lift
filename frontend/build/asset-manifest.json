@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d8a1cea9.chunk.css",
+    "main.js": "/static/js/main.5e49c9ae.chunk.js",
+    "main.js.map": "/static/js/main.5e49c9ae.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e7c64ebe.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e7c64ebe.js.map",
+    "static/css/2.383c0125.chunk.css": "/static/css/2.383c0125.chunk.css",
+    "static/js/2.998db6fc.chunk.js": "/static/js/2.998db6fc.chunk.js",
+    "static/js/2.998db6fc.chunk.js.map": "/static/js/2.998db6fc.chunk.js.map",
+    "static/js/3.bf51c048.chunk.js": "/static/js/3.bf51c048.chunk.js",
+    "static/js/3.bf51c048.chunk.js.map": "/static/js/3.bf51c048.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.383c0125.chunk.css.map": "/static/css/2.383c0125.chunk.css.map",
+    "static/css/main.d8a1cea9.chunk.css.map": "/static/css/main.d8a1cea9.chunk.css.map",
+    "static/js/2.998db6fc.chunk.js.LICENSE.txt": "/static/js/2.998db6fc.chunk.js.LICENSE.txt",
+    "static/media/CareerLift_LogoDraft2.5f222ed3.png": "/static/media/CareerLift_LogoDraft2.5f222ed3.png",
+    "static/media/blank_profile.bbe7d7a9.png": "/static/media/blank_profile.bbe7d7a9.png",
+    "static/media/undraw_celebration_re_kc9k.2d3327d4.svg": "/static/media/undraw_celebration_re_kc9k.2d3327d4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e7c64ebe.js",
+    "static/css/2.383c0125.chunk.css",
+    "static/js/2.998db6fc.chunk.js",
+    "static/css/main.d8a1cea9.chunk.css",
+    "static/js/main.5e49c9ae.chunk.js"
+  ]
+}

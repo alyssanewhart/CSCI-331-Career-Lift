@@ -1,28 +1,27 @@
 
 .contactForm{
-    background-color: rgb(77, 166, 207);
+    background-color: rgb(255, 255, 255);
     padding: 10px;
     margin-top: 50px;
     margin-left: 400px;
     text-align: center;
     border-radius: 25px;
-    width: 600px;
+    width: 625px;
     height: 650px
 }
 
 .contactFormBody {
-    background-color: rgb(51, 59, 163);
+    background-color: rgb(2, 68, 209);
     text-align: left;
     border-radius: 25px;
     width: 600px;
     height: 500px;
 
-
 }
 .contactHeader {
     font-family: 'Merriweather Sans', sans-serif;    
     font-size: 50px;
-    color: rgb(255, 255, 255);
+    color: rgb(6, 80, 238);
     text-align: center;
     
 }
@@ -30,7 +29,7 @@
 .contactInfo {
     font-family: 'Poppins',sans-serif;
     font-size: 20px;
-    color: rgb(255, 255, 255);
+    color: rgb(6, 80, 238);
     text-align: center;
 }
 
@@ -124,13 +123,13 @@
 
 .submitBtn{
   border-radius: 1rem;
-  background-color:#78bce4;
+  background-color:#ffffff;
   border:rgb(136, 137, 224);
   width: 150px;
   height: 50px;
   transition: all 0.5s;
   font-size: 25px;
-  color: white;
+  color: rgb(2, 68, 209);
   font-family: 'Poppins', sans-serif;
   display: inline-block;
   position: relative;
@@ -146,6 +145,6 @@
 
 .submitBtn:hover{
     font-size: 30px;
-    background-color: rgb(66, 168, 209);
+    background-color: rgba(252, 252, 252, 0.747);
     text-decoration: none;
 }

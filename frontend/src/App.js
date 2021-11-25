@@ -1,26 +1,20 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import LoginForm from './Components//Login/LoginForm';
-import SignUpForm from './Components//SignUp/SignUpForm';
+import LoginForm from './components/Login/LoginForm';
+import SignUpForm from './components/SignUp/SignUpForm';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
-import Navigation from './Components/PublicNavigation/Navigation.jsx'
-import Home from './Components/Pages/Home.jsx';
-import profile from './Components/Pages/profile';
-import userProfile from './Components/Pages/userProfile';
-import SignUpSuccess from './Components/SignUp/Success';
-import CreateProfile from './Components/CreateProfile/CreateProfile';
-import Topbar from "./Components/profileTopbar/Topbar"
-import Navbar from './components/Navbar/Navbar'
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navigation from './components/PublicNavigation/Navigation.jsx';
+import userProfile from './components/Pages/userProfile';
+import SignUpSuccess from './components/SignUp/Success';
+import CreateProfile from './components/CreateProfile/CreateProfile';
+import Topbar from "./components/profileTopbar/Topbar";
 import MainSection from './components/HomePage/mainSection';
-import learnMore from './components/aboutUs/learnMore';
-import history from './history';
+import aboutUs from './components/aboutUs/aboutUs';
 import privacyPolicy from './components/privacyPolicy/privacyPolicy';
 import terms from './components/terms/terms';
 import contactUs from './components/contactUs/contactUs';
-import footer from './components/footer/footer';
+import Footer from './components/footer/footer';
 //import AuthProvider, {useAuth} from "./context";
 //import useAuth from "./context";
 
@@ -70,13 +64,11 @@ else {
   
   return (
   <Router>
-    
-     <Navigation />
+    <Navigation/>
+    <Footer/>
         <Switch>
-          <Route path='/Navbar' component={Navbar}/>
-          <Route path='/footer' component={footer}/>
           <Route path='/mainSection' exact component={MainSection}/>
-          <Route path='/learnMore'  component={learnMore}/>
+          <Route path='/aboutUs'  component={aboutUs}/>
           <Route path='/contactUs' component={contactUs}/>
           <Route path='/terms' component={terms}/>
           <Route path='/privacyPolicy' component={privacyPolicy}/>
