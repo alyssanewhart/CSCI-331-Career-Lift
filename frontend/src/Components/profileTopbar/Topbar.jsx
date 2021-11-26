@@ -39,7 +39,7 @@ const Topbar = ({setUser, user}) => {
                 <Nav.Link href="#action3"><IconButton><PeopleAlt class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action4"><IconButton><Notifications class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link><IconButton onClick={handleLogout}><LogoutIcon class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link><img alt="not found" width={"150px"} height={"150px"}src={profileImage} id={styles.profileimage}/></Nav.Link>
+                <Nav.Link href="../UserProfile"><img alt="not found" width={"150px"} height={"150px"}src={profileImage} id={styles.profileimage}/></Nav.Link>
                   {/* <NavDropdown title="Settings" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3"></NavDropdown.Item>
                       </NavDropdown>

@@ -24,8 +24,9 @@ const [user, setUser] = useState("");
 useEffect(() => {
   if(!user) {
   const loggedInId = localStorage.getItem("user");
+
+  if(loggedInId != null) {
   const url = `/${loggedInId}`;
-  console.log(url)
   
   // call service to get user's information
   UserDataService.getUser(url)
@@ -34,10 +35,10 @@ useEffect(() => {
         }
     )
     .catch(e => {
-      console.log(e);
     });
   }
-  })
+  }
+})
 
  if (user) {
     return ( 
