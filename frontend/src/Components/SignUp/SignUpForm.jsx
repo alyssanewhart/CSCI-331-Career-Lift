@@ -31,7 +31,8 @@ export default function SignUpForm() {
             email: email,
             password: password,
             userType: userType,
-            profilePicture: blankProfileImg
+            profilePicture: blankProfileImg,
+            classOf: null,
         }
 
         console.log(data)

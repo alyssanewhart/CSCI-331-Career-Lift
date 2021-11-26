@@ -42,7 +42,7 @@ useEffect(() => {
  if (user) {
     return ( 
       <Router>
-        <Topbar setUser = {setUser}/>
+        <Topbar setUser = {setUser} user = {user}/>
         <Switch>
 
         <Route exact path="/UserProfile" component={userProfile}/>
