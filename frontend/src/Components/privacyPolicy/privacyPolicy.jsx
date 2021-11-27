@@ -6,7 +6,7 @@ import Footer from "../footer/footer";
 function privacyPolicy() {
     return(
         <>
-        <Footer/>
+        
         <h1 className={privacyPolicyStyles.Pheader}>
             Privacy Policy
         </h1>
@@ -165,7 +165,7 @@ Phone/mobile number
 
 
             </p>
-
+            <Footer/>
         </>
     )
 

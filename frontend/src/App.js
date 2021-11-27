@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -65,8 +66,8 @@ else {
   return (
   <Router>
     <Navigation/>
-    <Footer/>
         <Switch>
+          <Route path='/Footer' exact component={Footer}/>
           <Route path='/mainSection' exact component={MainSection}/>
           <Route path='/aboutUs'  component={aboutUs}/>
           <Route path='/contactUs' component={contactUs}/>

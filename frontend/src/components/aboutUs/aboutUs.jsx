@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './aboutUs.module.css';
+import Footer from '../footer/footer';
 
-
-function aboutUs( {} ) {
+function aboutUs () {
 
     return (
+        <>
         <div>
             <header className={styles.learnHeader}>WHY wait until graduation to start your career?</header>
             <h1 className={styles.aboutUsList}> Explore Opportunities</h1>
@@ -14,7 +15,9 @@ function aboutUs( {} ) {
             <p className={styles.students}>
                 CareerLift will help YOU find your path.
             </p>
- 
+            <button className={styles.howItWorks}>
+                How it Works 
+            </button>
             <h4 className={styles.learnHeader}>
                 Information for Interested Universities
             </h4>
@@ -42,8 +45,9 @@ function aboutUs( {} ) {
             </ol>
     
         </div>
+        <Footer/>
+        </>
     )
 }
 
-export default aboutUs
-
+export default aboutUs;

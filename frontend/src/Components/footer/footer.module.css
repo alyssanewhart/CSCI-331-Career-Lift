@@ -1,14 +1,9 @@
 
 
 .footer {
-    position: fixed;
-    left: 0;
+    position: relative;
     bottom: 0px;
     width: 100%;
-    color: white;
-    overflow: hidden;
-    margin-top: 300px;
-    
 
 }
 
@@ -21,7 +16,7 @@
 }
 
 .terms:hover{
-    background-color: rgba(128, 128, 128, 0.493);
+    color: rgba(128, 128, 128, 0.493);
 }
 
 .privacy{
@@ -34,7 +29,7 @@
 }
 
 .privacy:hover{
-    background-color: rgba(128, 128, 128, 0.493);
+    color: rgba(128, 128, 128, 0.493);
 }
 
 .contact{
@@ -47,5 +42,5 @@
 }
 
 .contact:hover{
-    background-color: rgba(128, 128, 128, 0.493);
+    color: rgba(128, 128, 128, 0.493);
 }
