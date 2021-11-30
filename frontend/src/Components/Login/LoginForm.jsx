@@ -40,15 +40,8 @@ const LoginForm  = ({setUser}) => {
                 localStorage.setItem('user', response.data.user._id)
                 console.log(response.data.user)
 
-                 // if profile has not been setup, (class is required) redirect to edit profile page
-                 if(response.data.user.classOf == null) {
-                    history.push("/CreateProfile")
-                    }
-    
                 // redirect to create profile page upon authentication
-                    else {
-                        history.push("/UserProfile")
-                    }
+                history.push("/CreateProfile")
 
               }
               else {
