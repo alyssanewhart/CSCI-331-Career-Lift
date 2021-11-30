@@ -1,42 +1,82 @@
-const router = require("express").Router();
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
+import express from "express";
+import user from "../models/user.js";
+import bcrypt from "bcrypt";
+const router = express.Router();
 
-//REGISTER
-router.post("/register", async (req, res) => {
-  try {
-    //generate new password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+/* router.route("/").get((req,res) => res.send("hello world")) test if connected */
 
-    //create new user
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: hashedPassword,
-    });
+// sign up Route
+router.post("/signup", async (req, res)=> {
+    
+    // check if email already in use
+    try {
+        let existingUser = await user.findOne({ email: req.body.email })
 
-    //save user and respond
-    const user = await newUser.save();
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(500).json(err)
-  }
-});
+        // if email already in use 
+        if (existingUser) {
+            res.json({status: "duplicate email"})
+        } 
 
-//LOGIN
-router.post("/login", async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    !user && res.status(404).json("user not found");
+        else {
+            
+            // generate hashed password using bcrypt
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
-    !validPassword && res.status(400).json("wrong password")
+            // build name from user's first name and last name
+            const name = req.body.firstName + " " + req.body.lastName;
 
-    res.status(200).json(user)
-  } catch (err) {
-    res.status(500).json(err)
-  }
-});
+            // create new user
+            const newUser =  new user({ 
+                name: name, 
+                email:req.body.email,
+                password: hashedPassword,
+                userType: req.body.userType,
+                profilePicture: req.body.profilePicture,
+                coverPicture: req.body.coverPicture
+            }); 
 
-module.exports = router;
+            // Add new user to DB
+            try {
+                const user = await newUser.save();
+                res.status(200).json({ status: "success" })
+        
+               // catch error adding new user to DB
+            }  catch(e) {
+            res.status(500).json({ error: e.message })
+            }  
+
+        }
+        // catch all other errors
+        } catch(e) {
+        res.status(500).json({ error: e.message })
+        }
+    })
+
+
+// login route
+router.post("/login", async (req, res)=>{
+try{
+    // check email
+    const validEmail =  await user.findOne({email: req.body.email});
+
+    // check password by hashing with bcrypt and comparing
+    const validPassword = await bcrypt.compare(req.body.password, validEmail.password);
+
+    // if either password or email is invalid
+    if ((!validPassword) || (!validEmail)) { 
+        res.json({status: "invalid login credentials"})  
+    } 
+
+    // if valid credentials respond with "success" and user id
+    else { 
+        res.status(200).json({ status: "success", user: validEmail}) 
+        
+    }
+    
+    } catch(e) {
+        res.status(500).json(e);
+    }
+}) 
+
+export default router;

@@ -11,8 +11,6 @@ import {
   School,
 } from "@material-ui/icons"; 
 
-import { Users } from "../../dummyData";
-import  CloseNetwork from "../closeNetwork/closeNetwork";
 //import CloseFriend from "../closeFriend/CloseFriend";
 
 

@@ -1,24 +1,23 @@
 import styles from "./Rightbar.module.css"
 import { StarOutline } from "@material-ui/icons"
 import { Users} from "../../dummyData"
-import Online from "../online/online"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 
 export default function Rightbar({user}) {
+
+  
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const[connections, setConnections] = useState([]);
-  const { user:currentUser, dispatch } = useContext(AuthContext);
   //the must be set to the initial state
-  const[followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
+  //const[followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
 
+   
+  // console.log(currentUser.followings)
 
-   console.log(currentUser.followings)
-
-  useEffect(() => {
+ /* useEffect(() => {
     const getConncetions = async () => {
       try {
         const connectionList = await axios.get("/users/connections/"+user._id);
@@ -29,17 +28,15 @@ export default function Rightbar({user}) {
     };
      getConncetions();
   }, [user])
-
+/*
   // when clicked sends the data to the database
   // 
-  const followHandler= async () =>{
+ /* const followHandler= async () =>{
     try{
       if(followed){
         await axios.put(`/users/${user._id}/unfollow`, {userId:currentUser._id,});
-        dispatch({type:"UNFOLLOW", payload:user._id});
       }else{
         await axios.put(`/users/${user._id}/follow`, {userId:currentUser._id,});
-         dispatch({type:"FOLLOW", payload:user._id})
       }
 
     }catch(err){
@@ -47,7 +44,7 @@ export default function Rightbar({user}) {
     }
      setFollowed(!followed)
    
-  };
+  };*/
 
     const HomeRightBar = () =>{
         return (
@@ -150,20 +147,20 @@ export default function Rightbar({user}) {
     const ProfileRightBar = () =>{
         return (
             <>
-            {user.name !== currentUser.name && (
+          {/*  {user.name !== currentUser.name && (
               <button className={styles.rightbarConnectButton} onClick={followHandler}>
                 {followed ? "Remove Connection" : "Connect"}
               </button>
-            )}
+            )} */}
             <h4 className={styles.rightbarTitle}>{user.name}'s Information</h4>
             <div className={styles.rightbarInfo}>
           <div className={styles.rightbarInfoItem}>
             <span className={styles.rightbarInfoKey}>Currently Working at:</span>
-            <span className={styles.rightbarInfoValue}>{user.workingAt}</span>
+            <span className={styles.rightbarInfoValue}>{user.company}</span>
           </div>
           <div className={styles.rightbarInfoItem}>
-            <span className={styles.rightbarInfoKey}>Research Interest:</span>
-            <span className={styles.rightbarInfoValue}>Application of Quantum Computers</span>
+            <span className={styles.rightbarInfoKey}>Career Interest:</span>
+            <span className={styles.rightbarInfoValue}>{user.careerInterest}</span>
           </div>
           <div className={styles.rightbarInfoItem}>
             <span className={styles.rightbarInfoKey}>Looking for:</span>

@@ -1,69 +1,75 @@
 import './App.css';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components//Login/LoginForm';
 import SignUpForm from './Components//SignUp/SignUpForm';
-import { BrowserRouter as Router, Switch, Route, Redirect  } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import Navigation from './Components/PublicNavigation/Navigation.jsx'
 import Home from './Components/Pages/Home.jsx';
-import Feed from './Components/Pages/Profile';
-import userProfile from './Components/Pages/UserProfile';
-import { AuthContext } from "./context/AuthContext"
-import { useContext } from "react";
+import profile from './Components/Pages/Profile';
 import UserProfile from './Components/Pages/UserProfile';
-import Messages from './Components/Pages/Messages/Messages';
-//import {dotenv}
-
-
-
-// class LoginApp extends React.Component {
-
-
-
-//   render() {
-
-//     return ( 
-//       <Router>
-//         {/* <Navigation /> */}
-//         <Switch>
-// 		      <Route exact path="/" component={Home}/>
-// 				  <Route  exact path="/SignUp" component={SignUpForm}/>
-//           <Route  exact path="/Login" component={LoginForm}/>
-//           <Route exact path="/UserProfile/:userName" component={userProfile} />
-//           <Route exact path="/Feed" component={feed} />
-// 	      </Switch>
-//       </Router>
-      
-//     );
-//   }
-// }
-
-// export default LoginApp;
+import SignUpSuccess from './Components/SignUp/Success';
+import CreateProfile from './Components/CreateProfile/CreateProfile';
+import Topbar from "./Components/profileTopbar/Topbar"
+//import AuthProvider, {useAuth} from "./context";
+//import useAuth from "./context";
+import UserDataService from "./services/user"
 
 function App() {
-  const { user } = useContext(AuthContext);
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          {user ? <Home /> : <SignUpForm />}
-        </Route>
-        <Route path="/login">{user ? <Redirect to="/Feed" /> : <LoginForm />}</Route>
-        <Route path="/register">
-          {user ? <Redirect to="/" /> : <SignUpForm />}
-        </Route>
-        <Route path="/messages">
-          {!user ? <Redirect to="/" /> : <Messages />}
-        </Route>
-        <Route path="/Feed">
-          <Feed />
-        </Route>
-        <Route path="/UserProfile/:name">
-          <UserProfile />
-        </Route>
-      </Switch>
-    </Router>
-  );
+
+// stores user information 
+const [user, setUser] = useState("");
+
+// on page refresh, retrieves user's id from the local storage and then retrieves their data from the DB
+useEffect(() => {
+  if(!user) {
+  const loggedInId = localStorage.getItem("user");
+
+  if(loggedInId != null) {
+  const url = `/${loggedInId}`;
+  
+  // call service to get user's information
+  UserDataService.getUser(url)
+    .then(response => {
+          setUser(response.data);
+        }
+    )
+    .catch(e => {
+    });
+  }
+  }
+})
+
+ if (user) {
+    return ( 
+      <Router>
+        <Topbar setUser = {setUser} user = {user}/>
+        <Switch>
+
+        <Route exact path="/UserProfile"><UserProfile user = {user} setUser = {setUser}/></Route>
+        <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
+          {/* <Route exact path="/userProfile" component={userProfile} /> */}
+	      </Switch>
+      </Router>
+      
+    );
 }
+
+else {
+  
+  return (
+  <Router>
+    
+     <Navigation />
+        <Switch>
+		      <Route exact path="/" component={Home}/>
+				  <Route  exact path="/SignUp" component={SignUpForm}/>
+          <Route exact path = "/Success" component={SignUpSuccess}/>
+          <Route  exact path="/Login">< LoginForm setUser = {setUser}/></Route>
+	      </Switch>
+      </Router>
+  )};
+  }
+  
 
 export default App;
