@@ -1,4 +1,5 @@
 import express from "express";
+import fileUpload from "express-fileupload";
 
 const app = express();
 
@@ -12,6 +13,9 @@ import  userRoute from "./routes/users.js";
 import  authRoute from "./routes/auth.js";
 import  fileRoute from "./routes/file.js";
 
+// expresss-fileupload
+app.use(fileUpload());
+app.use(express.static("files"));
 
 dotenv.config();
 

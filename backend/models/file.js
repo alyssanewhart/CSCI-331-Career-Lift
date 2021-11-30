@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 const FileSchema =  new mongoose.Schema({
-    meta_data:{}
+    image:{}
 });
 
 export default mongoose.model("File", FileSchema);

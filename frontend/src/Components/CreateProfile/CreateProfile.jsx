@@ -22,6 +22,7 @@ const CreateProfile = ({user}) => {
     const [careerInterest, setCareerInterest] = useState("");
     const [classOf, setClassOf] = useState("");
     const [lookingFor, setLookingFor] = useState("");
+    
 
     const history = useHistory()
 
@@ -32,8 +33,27 @@ const CreateProfile = ({user}) => {
         console.log("selected image printed")
         console.log(selectedImage)
         console.log(defaultImage)
+
+        let data = new FormData()
+        data.append("file", e.target.files[0])
+        data.append("fileName", e.target.files[0].name);
+
+       
+  
+      console.log(" Form Data ")
+      for (var key of data.entries()) {
+          console.log(key[0] + ', ' + key[1]);
+  
+      }
+  
+      axios.post("http://localhost:8800/api/file/upload", data)
+          .then((response) => {
+              alert("The file is successfully uploaded");
+          }).catch((error) => {
+      });  
 }
 
+  
     // submit user's data to DB
     function submit(e) {
       e.preventDefault()
@@ -203,8 +223,9 @@ const CreateProfile = ({user}) => {
                           type="file" style={{ display: 'none' }} 
                           onChange={(event) => {
                           console.log(event.target.files[0]);
-                          setSelectedImage(null);           // clear previous photo
+                         // setSelectedImage(null);           clear previous photo
                           setSelectedImage(event.target.files[0]);
+                          console.log(selectedImage)
                           setDefaultImage(null);
                           updateProfileImg(event);
                         }}/>
