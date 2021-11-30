@@ -48,13 +48,24 @@ const UserSchema =  new mongoose.Schema({
             max:80
 
         },
-
-        status:{
-            type:String,
-            //default:["Student", "Alumni", "Proffessor"],
-            enum:[1,2,3]
-        }, 
         
+        jobTitle: {
+            type: String,
+        },
+
+        careerInterest: {
+            type: String,
+        },
+
+        company: {
+            type: String,
+        },
+
+        lookingFor: {
+            type: String,
+        },
+
+
         classOf:{
             type:String,
             //DATE

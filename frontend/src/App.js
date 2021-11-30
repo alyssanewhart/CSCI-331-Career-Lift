@@ -13,41 +13,39 @@ import CreateProfile from './Components/CreateProfile/CreateProfile';
 import Topbar from "./Components/profileTopbar/Topbar"
 //import AuthProvider, {useAuth} from "./context";
 //import useAuth from "./context";
+import UserDataService from "./services/user"
 
 function App() {
 
-// stores login status and user_id
+// stores user information 
 const [user, setUser] = useState("");
-//const [auth, handleAuth] = useAuth(useAuth);
-//console.log(user.name);
-/*if (user.loginStatus === "success") {
- // handleAuth();
-} */
-useEffect(() => {
-  const loggedInUser = localStorage.getItem("user");
-  if (loggedInUser) {
-    const foundUser = loggedInUser;
-    setUser(foundUser);
-    console.log(user)
-  }
-}, []);
-//console.log(user)
 
-//const [auth, handleAuth] = useAuth(useAuth);
-console.log(user)
-//if (user.loginStatus === "success") {
-  console.log(user)
-  //console.log(auth)
- // if (auth) {
- //   console.log(auth)
- // <Route  exact path="/Login"><AuthProvider>< LoginForm /></AuthProvider></Route>
+// on page refresh, retrieves user's id from the local storage and then retrieves their data from the DB
+useEffect(() => {
+  if(!user) {
+  const loggedInId = localStorage.getItem("user");
+  const url = `/${loggedInId}`;
+  console.log(url)
+  
+  // call service to get user's information
+  UserDataService.getUser(url)
+    .then(response => {
+          setUser(response.data);
+        }
+    )
+    .catch(e => {
+      console.log(e);
+    });
+  }
+  })
+
  if (user) {
     return ( 
       <Router>
         <Topbar setUser = {setUser}/>
         <Switch>
 
-        <Route exact path="/" component={userProfile}/>
+        <Route exact path="/UserProfile" component={userProfile}/>
         <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
           {/* <Route exact path="/userProfile" component={userProfile} /> */}
 	      </Switch>

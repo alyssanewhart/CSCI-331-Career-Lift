@@ -3,7 +3,7 @@ import styles from './SignUpForm.module.css';
 import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
-import UserDataService from "../../services/auth.js";
+import AuthDataService from "../../services/auth.js";
 import { useHistory } from "react-router";
 import blankProfileImg from "../Images/blank_profile.png";
 
@@ -35,7 +35,7 @@ export default function SignUpForm() {
         }
 
         console.log(data)
-        UserDataService.createUser(data)
+        AuthDataService.createUser(data)
         .then(response => {
           if(response.data.status === "duplicate email") {
               console.log(response.data)

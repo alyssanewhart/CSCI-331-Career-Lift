@@ -1,6 +1,6 @@
 import http from "../auth-http-common";
 
-class UserDataService {
+class AuthDataService {
 
     createUser(data) {
         return http.post("/signup", data);
@@ -12,4 +12,4 @@ class UserDataService {
 
 }
 
-export default new UserDataService();
+export default new AuthDataService();
