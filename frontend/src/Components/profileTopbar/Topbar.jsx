@@ -1,22 +1,13 @@
 import styles from'./ProfileTopbar.module.css'
-import { Search, Person, Chat, Notifications, Home, PeopleAlt, Work, Message} from "@material-ui/icons";
+import { Search, Person, Chat, Notifications, Home, PeopleAlt, Work, Message } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
-import {Button, Navbar, Form, Nav, Container, NavDropdown, FormControl}  from 'react-bootstrap';
+import {Button}  from 'react-bootstrap';
 import { useHistory } from "react-router";
-import Logo from '../Images/CareerLift_LogoDraft2.png';
-import IconButton from '@material-ui/core/IconButton';
-import LogoutIcon from '@mui/icons-material/Logout';
-import {useState} from 'react';
 
-// receiver user state and setUser function for App.js
-const Topbar = ({setUser, user}) => {
+const Topbar = ({setUser}) => {
 
     const history = useHistory()
 
-    // import profileImage from user
-    const profileImage = user.profilePicture;
-
-    // function to logout user by clearing user state and local storage
     const handleLogout = () => {
         setUser()
         localStorage.clear();
@@ -24,41 +15,70 @@ const Topbar = ({setUser, user}) => {
       };
 
     return (
-      <Navbar bg="light" expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="/"><img src={Logo} alt="Logo" id={styles.Logo}/></Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-              <Navbar.Collapse id="navbarScroll">
-                <Nav
-                className="ms-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
-                navbarScroll
-                >
-                <Nav.Link href="#action1"><IconButton><Home class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="#action2"><IconButton><Chat class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="#action3"><IconButton><PeopleAlt class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="#action4"><IconButton><Notifications class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link><IconButton onClick={handleLogout}><LogoutIcon class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="../UserProfile"><img alt="not found" width={"150px"} height={"150px"}src={profileImage} id={styles.profileimage}/></Nav.Link>
-                  {/* <NavDropdown title="Settings" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3"></NavDropdown.Item>
-                      </NavDropdown>
-                      <Nav.Link href="#" disabled>
-                      Link
-                  </Nav.Link> */}
-                </Nav>
-                {/*<Form className="d-flex">
-                <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-                </Form> */}
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
+        <div className={styles.topbarContainer}>
+            <div className={styles.topbarLeft}>
+                 <div className={styles.searchbar}>
+                <Search className={styles.searchIcon} />
+                <input placeholder="Search for a job, mentor, forum,  or a friend" className={styles.searchInput}/>
+                </div>
+                
+            </div>
+            <div className={styles.topbarCenter}>
+               <span className={styles.logo}>CareerLift</span>
+            </div>
+            <div className={styles.topbarRight}>
+                {/* <div className="topbarLinks">
+                <span className="topbarLink"> <Home className="topbarIcons"/>Homepage</span>
+                <span className="topbarLink"><PeopleAlt className="topbarIcons"/>Connections</span>
+                 <span className="topbarLink"><i class="fas fa-chalkboard-teacher topbarIcons"></i> Mentor</span>
+                <span className="topbarLink"><Work className="topbarIcons"/>Connections</span>
+                <span className="topbarLink"><Message className="topbarIcons"/>Messages</span>
+                <span className="topbarLink"><Notifications className="topbarIcons"/>Notifications</span>
+                <span className="topbarLink"><Work className="topbarIcons"/>Connections</span> 
+                </div> */}
+                <div className={styles.topbarIcons}>
+                    <div className={styles.topbarLinkItem}>
+                        <Home className={styles.topbarIconItem}/>
+                        <span className={styles.topbarIconText}><Link to="/" className={styles.link}>Home</Link></span>
+                    </div>
+                    <div className={styles.topbarLinkItem}>
+                        <PeopleAlt className={styles.topbarIconItem}/>
+                        <span className={styles.topbarIconBadge}>1</span>
+                        <span className={styles.topbarIconText}>Connection</span>
+                    </div>
+                    {/* <div className="topbarLinkItem">
+                        <i class="fas fa-chalkboard-teacher topbarIconItem"></i>
+                        <span className="topbarIconText">Mentor</span>
+                    </div> */}
+                    <div className={styles.topbarLinkItem}>
+                        <Work className={styles.topbarIconItem}/>
+                        <span className={styles.topbarIconBadge}>1</span>
+                        <span className={styles.topbarIconText}>Jobs</span>
+                    </div>
+                    <div className={styles.topbarLinkItem}>
+                        <Message className={styles.topbarIconItem}/>
+                        <span className={styles.topbarIconBadge}>2</span>
+                        <span className={styles.topbarIconText}>Messages</span>
+                    </div>
+                    <div className={styles.topbarLinkItem}>
+                        <Notifications className={styles.topbarIconItem}/>
+                        <span className={styles.topbarIconBadge}>1</span>
+                        <span className={styles.topbarIconText}>Notifications</span>
+                    </div>
+                    <button onClick={handleLogout}>logout</button>
+                </div>
+                
+                
+                <img src="/assets/person/1.jpeg" alt="" className={styles.topbarImg}/>
+                 
+            </div>
+        </div>
+       
+         
+           
+  
+
+
     );
 }
 export default Topbar;
