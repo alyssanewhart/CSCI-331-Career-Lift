@@ -9,7 +9,7 @@ class Navigation extends React.Component {
         return (
             <>
   <Navbar bg="light" expand="lg">
-  <Container>
+  <Container fluid>
     <Navbar.Brand href="/"><img src={Logo} alt="Logo" id={styles.Logo}/></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
