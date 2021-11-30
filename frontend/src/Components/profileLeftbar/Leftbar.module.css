@@ -1,0 +1,120 @@
+.leftbar{
+max-width: 60px;  
+height: calc(100vh - 80px);
+    /* overflow-y: scroll; */
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 150px;
+    margin-bottom: 0px;
+    position: sticky;
+    top: 100px;
+     border-radius: 10px;
+ /* -webkit-box-shadow: -2px 3px 30px 0px rgba(0,0,0,0.5); 
+box-shadow: -2px 3px 30px 0px rgba(0,0,0,0.5); */
+background-color: #4791fd;
+    
+}
+::-webkit-scrollbar {
+    width: 5px;
+  }
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+  }
+.leftbarList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+.leftbarWrapper{
+    padding:15px;
+}
+.leftbarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .leftbarListItemText{
+font-size:15px;
+opacity: 0;
+    color: #fff;
+
+    transition: all 1s ease;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    top: 0;
+    padding-right: 15px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    /* padding-left: 20px; */
+
+
+  }
+.leftbarIcon {
+    margin-right: 20px;
+    margin-bottom: 16px;
+    color: #fff;    
+    font-size:15px;
+    cursor: pointer;
+   
+
+  }
+
+  .leftbarIcon:hover + .leftbarListItemText{
+opacity: 1;
+    background-color: #4791fd;
+        /* left: 100px; */
+
+    /* left: 100px; */
+    transform: translate(0px);
+            /* transition: 10s; */
+
+  }
+  .leftbarButton {
+     border: none;
+    padding: 10px 12px;
+    display: none;
+    border-radius: 6px;
+    /* background-image: linear-gradient(to right, #aa1d86, #52176d); */
+    background-color: #0C69F3;
+   opacity: 74%;
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: white;
+  }
+  .leftbarButton:hover{
+      background-image: linear-gradient(to right,  #52176d, #aa1d86);
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  
+  .leftbarHr {
+    margin: 20px 0;
+  }
+  
+  .leftbarConnectionList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+.leftbarConnection{
+    display: flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+.leftbarConnectionImg{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    margin-right:10px;
+    object-fit:cover;
+}
+.leftbarConnectionName{
+  font-size: 14px;;
+}
