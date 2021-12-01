@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function Rightbar({user}) {
 
-  
+  console.log(user)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const[connections, setConnections] = useState([]);
   //the must be set to the initial state

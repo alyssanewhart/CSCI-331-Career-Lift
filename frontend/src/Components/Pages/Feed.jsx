@@ -1,14 +1,16 @@
 import React from 'react'
+import Feed from "../profileFeed/Feed"
 import Leftbar from "../profileLeftbar/Leftbar"
 import Rightbar from "../profileRightbar/Rightbar"
 import styles from "./profile.module.css"
 
-export default function profile({user}) {
+export default function generalFeed({user}) {
     return (
         <>
       <div className={styles.profileContainer}>
         <Leftbar/>
-        <Rightbar user = {user}/>
+        <Feed user = {user}/>
+        <Rightbar/>
       </div>
       </>
     )

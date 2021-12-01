@@ -6,7 +6,7 @@ import SignUpForm from './Components//SignUp/SignUpForm';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import Navigation from './Components/PublicNavigation/Navigation.jsx'
 import Home from './Components/Pages/Home.jsx';
-import profile from './Components/Pages/Profile';
+import Feed from './Components/Pages/Feed.jsx';
 import UserProfile from './Components/Pages/UserProfile';
 import SignUpSuccess from './Components/SignUp/Success';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
@@ -14,10 +14,12 @@ import Topbar from "./Components/profileTopbar/Topbar"
 //import AuthProvider, {useAuth} from "./context";
 //import useAuth from "./context";
 import UserDataService from "./services/user"
+//import { AuthContext } from "./Context/auth-context.js"
 
 function App() {
 
 // stores user information 
+//const {user, setUser} = useContext(AuthContext);
 const [user, setUser] = useState("");
 
 // on page refresh, retrieves user's id from the local storage and then retrieves their data from the DB
@@ -46,8 +48,10 @@ useEffect(() => {
         <Topbar setUser = {setUser} user = {user}/>
         <Switch>
 
-        <Route exact path="/UserProfile"><UserProfile user = {user} setUser = {setUser}/></Route>
-        <Route exact path="/CreateProfile"><CreateProfile user = {user}/></Route>
+        <Route exact path="/UserProfile"><UserProfile user = {user} setUser = {setUser}/></Route> 
+      {/*  <Route path="/UserProfile/:name"><UserProfile /></Route>   */}
+        <Route exact path="/CreateProfile"><CreateProfile user = {user} setUser={setUser}/></Route>
+        <Route exact path="/Feed"><Feed user={user}/></Route>
           {/* <Route exact path="/userProfile" component={userProfile} /> */}
 	      </Switch>
       </Router>
@@ -65,7 +69,7 @@ else {
 		      <Route exact path="/" component={Home}/>
 				  <Route  exact path="/SignUp" component={SignUpForm}/>
           <Route exact path = "/Success" component={SignUpSuccess}/>
-          <Route  exact path="/Login">< LoginForm setUser = {setUser}/></Route>
+          <Route  exact path="/Login">< LoginForm setUser={setUser} /></Route>
 	      </Switch>
       </Router>
   )};

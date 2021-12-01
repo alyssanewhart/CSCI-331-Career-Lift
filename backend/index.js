@@ -12,6 +12,7 @@ import helmet from "helmet";
 import  userRoute from "./routes/users.js";
 import  authRoute from "./routes/auth.js";
 import  fileRoute from "./routes/file.js";
+import  postRoute from "./routes/posts.js";
 
 // expresss-fileupload
 app.use(fileUpload());
@@ -39,6 +40,7 @@ app.use(morgan("common"));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/file", fileRoute);
+app.use("/api/posts", postRoute);
 
 app.listen(8800, () =>{
     console.log("Server is running")

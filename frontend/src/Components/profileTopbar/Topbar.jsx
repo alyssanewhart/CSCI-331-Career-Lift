@@ -34,7 +34,7 @@ const Topbar = ({setUser, user}) => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
                 >
-                <Nav.Link href="#action1"><IconButton><Home class={styles.iconColor}/></IconButton></Nav.Link>
+                <Nav.Link href="../Feed"><IconButton><Home class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action2"><IconButton><Chat class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action3"><IconButton><PeopleAlt class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action4"><IconButton><Notifications class={styles.iconColor}/></IconButton></Nav.Link>

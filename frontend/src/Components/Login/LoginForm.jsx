@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import styles from './LoginForm.module.css';
 import {Row, Col, Card, Form, Button, Alert }from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -8,11 +8,13 @@ import { useHistory } from "react-router";
 //import AuthProvider, {useAuth} from "../../context";
 
 const LoginForm  = ({setUser}) => {
+
         const history = useHistory()
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [loginUser, setLoginUser] = useState("");
-       // const [auth, handleAuth] = useAuth(useAuth);
+        //const [user, setUser]  = useContext(AuthContext);
+       //const [auth, handleAuth] = useAuth(useAuth);
         
         console.log(email, password)
 
@@ -39,7 +41,6 @@ const LoginForm  = ({setUser}) => {
                 // store the user_id in localStorage for access on refesh
                 localStorage.setItem('user', response.data.user._id)
                 console.log(response.data.user)
-
                  // if profile has not been setup, (class is required) redirect to edit profile page
                  if(response.data.user.classOf == null) {
                     history.push("/CreateProfile")

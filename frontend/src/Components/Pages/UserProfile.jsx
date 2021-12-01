@@ -3,22 +3,19 @@ import styles from"./userProfile.module.css"
 import Leftbar from "../profileLeftbar/Leftbar"
 import Rightbar from "../profileRightbar/Rightbar"
 import React, { useEffect, useState } from 'react';
-
+import Feed from "../profileFeed/Feed"
 import axios from "axios"
 import { useParams } from "react-router"
+//import { AuthContext } from "../../Context/auth-context.js"
 
-
-
-
-
-export default function UserProfile({user, setUser}) {
+export default function UserProfile({user,setUser}) {
  
  const name = user.name;
  console.log(name)
  console.log(user.profilePicture)
  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  /*  useEffect(() => {
+ /* useEffect(() => {
         // because we can't use await in useEffects hook
         // neeed a separate function
         const fetchPosts =  async () => {
@@ -27,7 +24,7 @@ export default function UserProfile({user, setUser}) {
         };
             
         fetchPosts();      
-    }, [name]); */
+    }, [name]);  */
 
     return ( 
     <>
@@ -47,9 +44,8 @@ export default function UserProfile({user, setUser}) {
                     {/* <button className={styles.userProfileAddButton} type="">Add</button> */}
                 </div> 
                 <div className = {styles.userProfileRightBottom} >
-                    {/* <Feed />
-                    //next Step */}
-                    <Rightbar user={user}/>
+                     <Feed user = {user}/>
+                    <Rightbar user={user} name = {name}/>
                 </div>  
             </div>
         </div>  

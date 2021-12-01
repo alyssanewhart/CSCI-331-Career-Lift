@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+//import Post from "../../frontend/src/Components/profileFeed/Post/Post";
 
 const PostSchema = new mongoose.Schema(
   {
@@ -21,4 +22,5 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", PostSchema);
+export default mongoose.model("Post", PostSchema);
+
