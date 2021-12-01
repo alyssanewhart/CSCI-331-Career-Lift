@@ -2,29 +2,54 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-//REGISTER
-router.post("/register", async (req, res) => {
-  try {
-    //generate new password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+// Sign Up Route
+router.post("/signup", async (req, res)=> {
+    
+    // check if email already in use
+    try {
+        let existingUser = await user.findOne({ email: req.body.email })
 
-    //create new user
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: hashedPassword,
-    });
+        // if email already in use 
+        if (existingUser) {
+            res.json({status: "duplicate email"})
+        } 
 
-    //save user and respond
-    const user = await newUser.save();
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(500).json(err)
-  }
-});
+        else {
+            
+            // generate hashed password using bcrypt
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-//LOGIN
+            // build name from user's first name and last name
+            const name = req.body.firstName + " " + req.body.lastName;
+
+            // create new user
+            const newUser =  new user({ 
+                name: name, 
+                email:req.body.email,
+                password: hashedPassword,
+                userType: req.body.userType,
+                profilePicture: req.body.profilePicture
+            }); 
+
+            // Add new user to DB
+            try {
+                const user = await newUser.save();
+                res.status(200).json({ status: "success" })
+        
+               // catch error adding new user to DB
+            }  catch(e) {
+            res.status(500).json({ error: e.message })
+            }  
+
+        }
+        // catch all other errors
+        } catch(e) {
+        res.status(500).json({ error: e.message })
+        }
+    })
+
+// Login
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });

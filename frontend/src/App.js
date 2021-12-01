@@ -12,33 +12,9 @@ import { AuthContext } from "./context/AuthContext"
 import { useContext } from "react";
 import UserProfile from './Components/Pages/UserProfile';
 import Messages from './Components/Pages/Messages/Messages';
-//import {dotenv}
+import SignUpSuccess from './Components/SignUp/Success';
+import CreateProfile from './Components/CreateProfile/CreateProfile';
 
-
-
-// class LoginApp extends React.Component {
-
-
-
-//   render() {
-
-//     return ( 
-//       <Router>
-//         {/* <Navigation /> */}
-//         <Switch>
-// 		      <Route exact path="/" component={Home}/>
-// 				  <Route  exact path="/SignUp" component={SignUpForm}/>
-//           <Route  exact path="/Login" component={LoginForm}/>
-//           <Route exact path="/UserProfile/:userName" component={userProfile} />
-//           <Route exact path="/Feed" component={feed} />
-// 	      </Switch>
-//       </Router>
-      
-//     );
-//   }
-// }
-
-// export default LoginApp;
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -48,10 +24,12 @@ function App() {
         <Route exact path="/">
           {user ? <Home /> : <SignUpForm />}
         </Route>
-        <Route path="/login">{user ? <Redirect to="/Feed" /> : <LoginForm />}</Route>
-        <Route path="/register">
+        <Route path="/login">{user ? <Redirect to="/createprofile" /> : <LoginForm />}</Route>
+        <Route path="/signup">
           {user ? <Redirect to="/" /> : <SignUpForm />}
         </Route>
+        <Route exact path="/createprofile"><CreateProfile /></Route>
+        <Route exact path = "/success" component={SignUpSuccess}/>
         <Route path="/messages">
           {!user ? <Redirect to="/" /> : <Messages />}
         </Route>

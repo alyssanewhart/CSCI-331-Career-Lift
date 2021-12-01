@@ -1,66 +1,65 @@
-import { useContext, useRef } from "react";
-import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-import { CircularProgress } from "@material-ui/core";
+import React, {useState, useContext} from "react";
+import styles from './LoginForm.module.css';
+import {Row, Col, Card, Form, Button, Alert }from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import Logo from '../Images/CareerLift_LogoDraft2.png';
+//import AuthDataService from "../../services/auth.js";
+import { useHistory } from "react-router";
 
-export default function Login() {
-  const email = useRef();
-  const password = useRef();
+export default function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { user, isFetching, dispatch } = useContext(AuthContext);
 
-  const handleClick = (e) => {
+  console.log(email)
+  console.log(password)
+  function submit(e) {
     e.preventDefault();
     loginCall(
-      { email: email.current.value, password: password.current.value },
+      { email: email, password: password},
       dispatch
     );
     
   };
 
   console.log(user)
+        return (
+            <div id ={styles.LoginWrapper}>
+                <Card id={styles.LoginCard}>
+                    <Form className={styles.LoginForm} onSubmit={submit} >
+                        <img src={Logo} alt="Logo" className={styles.Logo}/>
+                        <h2 id={styles.loginH2}>Login</h2>
+                            <Form.Group className="mb-3" controlId="formBasicEmail" className={styles.formGroup}>
+                                <Row>
+                                    <Col>
+                                        <Form.Label className={styles.formLabel}>Email</Form.Label> 
+                                        <Form.Control type="email" placeholder="" className={styles.formControl} onChange={(e) => setEmail(e.target.value)}/>
+                                    </Col>
+                                </Row>
+                            </Form.Group>
+                    
 
-  return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">CareerLift</h3>
-        </div>
-        <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
-            <input
-              placeholder="Email"
-              type="email"
-              required
-              className="loginInput"
-              ref={email}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              required
-              minLength="6"
-              className="loginInput"
-              ref={password}
-            />
-            <button className="loginButton" type="submit" disabled={isFetching}>
-              {isFetching ? (
-                <CircularProgress color="white" size="20px" />
-              ) : (
-                "Log In"
-              )}
-            </button>
-            <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              {isFetching ? (
-                <CircularProgress color="white" size="20px" />
-              ) : (
-                "Create a New Account"
-              )}
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-}
+                            <Form.Group className="mb-3" controlId="formBasicPassword" class={styles.formGroup}>
+                                <Row>
+                                    <Col>
+                                        <Form.Label className={styles.formLabel}>Password</Form.Label>
+                                        <Form.Control type="password" placeholder="" className={styles.formControl} onChange={(e) => setPassword(e.target.value)}/>
+                                    </Col>
+                                </Row>
+                    </Form.Group>
+
+                        <Button className={styles.LoginBtn} variant="primary" type="submit"> 
+                        Login </Button>
+                        
+                        <div id={styles.ForgotPassword}><a href='#'><b>Forgot password?</b></a></div>
+                        <div id={styles.SignUpLink}>Need an account?&nbsp;<Link to="/signup"><b>Sign Up</b></Link></div>
+                    </Form>
+                </Card> 
+            </div>   
+        );
+ 
+        }
+
+
