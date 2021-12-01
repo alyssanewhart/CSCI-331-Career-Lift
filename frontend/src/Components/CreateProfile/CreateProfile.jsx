@@ -1,21 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styles from './CreateProfile.module.css';
 import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import { useHistory } from "react-router";
 import Topbar from "../profileTopbar/Topbar"
-// import UserDataService from "../../services/users.js";
 import axios from "axios";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import UserDataService from "../../services/user";
 import { ContactSupportOutlined } from "@material-ui/icons";
+import { AuthContext } from '../../context/AuthContext';
 
 
-// recieve user from App.js
-const CreateProfile = ({user}) => {
+
+const CreateProfile = () => {
  
+    const {user} = useContext(AuthContext)
     const [selectedImage, setSelectedImage] = useState(null);
     const [jobTitle, setJobTitle] = useState("");
     const [company, setCompany] = useState("");
@@ -46,11 +47,14 @@ const CreateProfile = ({user}) => {
   
       }
   
-      axios.post("http://localhost:8800/api/file/upload", data)
+     /* axios.post("http://localhost:8800/api/file/upload", data)
           .then((response) => {
               alert("The file is successfully uploaded");
+              dispatch
           }).catch((error) => {
-      });  
+      }); */
+      
+      
 }
 
   
@@ -77,7 +81,7 @@ const CreateProfile = ({user}) => {
               console.log(response.data);
               if(response.data === "success") {
                 // redirect to create profile page upon updating profile
-                history.push("/UserProfile")
+                history.push(`/userprofile/${user.name}`)
               }
             }
         )

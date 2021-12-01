@@ -37,7 +37,7 @@ function App() {
         <Route path="/Feed">
           <Feed />
         </Route>
-        <Route path="/UserProfile/:name">
+        <Route path="/userprofile/:name">
           <UserProfile />
         </Route>
       </Switch>

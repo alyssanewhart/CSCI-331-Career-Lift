@@ -40,13 +40,13 @@ export default function UserProfile() {
             <div className={styles.userProfileRight}>
                 <div className = {styles.userProfileRightTop}>
                     <div className = {styles.userProfileCover}>
-                        <img className = {styles.userProfileCoverImg}src = {user.coverPicture ? PF +user.profilePicture : PF+"person/defaultCover.jpg"}alt = "cover picture"/>
-                        <img className = {styles.userProfileUserImg}src = {user.profilePicture ? PF + user.profilePicture : PF+"person/noAvatar.png"}alt = "user picture"/>
+                        <img className = {styles.userProfileCoverImg}src = {user.coverPicture} alt = "cover picture"/>
+                        <img className = {styles.userProfileUserImg}src = {user.profilePicture} alt = "user picture"/>
                     </div>
                     <div className={styles.userProfileInfo}>
                         <h4 className={styles.userProfileInfoName}>{user.name}</h4>
                         <div className={styles.userProfileInfoDesc}> <i class="fas fa-chalkboard-teacher userProfileIcon"></i>{user.userType}</div>
-                        <div className={styles.userProfileInfoDesc}><i class="fas fa-graduation-cap userProfileIcon"></i>Class of 2006</div>
+                        <div className={styles.userProfileInfoDesc}><i class="fas fa-graduation-cap userProfileIcon"></i>{user.classOf}</div>
                     </div>
                     {/* <button className={styles.userProfileAddButton} type="">Add</button> */}
                 </div> 

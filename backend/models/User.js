@@ -60,6 +60,28 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       enum: [1, 2, 3],
     },
+    jobTitle: {
+      type: String,
+  },
+
+  careerInterest: {
+      type: String,
+  },
+
+  company: {
+      type: String,
+  },
+
+  lookingFor: {
+      type: String,
+  },
+
+
+  classOf:{
+      type:String,
+      //DATE
+  },
+
   },
   { timestamps: true }
 );

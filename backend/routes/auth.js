@@ -7,7 +7,7 @@ router.post("/signup", async (req, res)=> {
     
     // check if email already in use
     try {
-        let existingUser = await user.findOne({ email: req.body.email })
+        let existingUser = await User.findOne({ email: req.body.email })
 
         // if email already in use 
         if (existingUser) {
@@ -24,17 +24,18 @@ router.post("/signup", async (req, res)=> {
             const name = req.body.firstName + " " + req.body.lastName;
 
             // create new user
-            const newUser =  new user({ 
+            const newUser =  new User({ 
                 name: name, 
                 email:req.body.email,
                 password: hashedPassword,
                 userType: req.body.userType,
-                profilePicture: req.body.profilePicture
+                profilePicture: req.body.profilePicture,
+                coverPicture: req.body.coverPicture,
             }); 
 
             // Add new user to DB
             try {
-                const user = await newUser.save();
+                const savedUser = await newUser.save();
                 res.status(200).json({ status: "success" })
         
                // catch error adding new user to DB

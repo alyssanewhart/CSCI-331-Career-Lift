@@ -6,19 +6,21 @@ import { useHistory } from "react-router";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import { AuthContext } from '../../context/AuthContext';
+
 
 // receiver user state and setUser function for App.js
-const Topbar = ({setUser, user}) => {
+const Topbar = () => {
 
     const history = useHistory()
+    const {user} = useContext(AuthContext)
 
     // import profileImage from user
     const profileImage = user.profilePicture;
 
     // function to logout user by clearing user state and local storage
     const handleLogout = () => {
-        setUser()
         localStorage.clear();
         history.push("/")
       };
@@ -39,7 +41,7 @@ const Topbar = ({setUser, user}) => {
                 <Nav.Link href="#action3"><IconButton><PeopleAlt class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action4"><IconButton><Notifications class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link><IconButton onClick={handleLogout}><LogoutIcon class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="../UserProfile"><img alt="not found" width={"150px"} height={"150px"}src={profileImage} id={styles.profileimage}/></Nav.Link>
+                <Nav.Link href={`/userprofile/${user.name}`}><img alt="not found" width={"150px"} height={"150px"}src={profileImage} id={styles.profileimage}/></Nav.Link>
                   {/* <NavDropdown title="Settings" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3"></NavDropdown.Item>
                       </NavDropdown>

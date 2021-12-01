@@ -8,8 +8,9 @@ import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import blankProfileImg from "../Images/blank_profile.png";
+import defaultCoverImg from "../Images/default-cover-image.jpg";
 
-export default function Register() {
+export default function SignUp() {
   const [firstName, setfirstName] = useState("");
       const [lastName, setlastName] = useState("");    
       const [email, setEmail] = useState("");   
@@ -31,8 +32,8 @@ export default function Register() {
         }
       }
 
-     const submit = async (e) =>  {
-      e.preventDefault();
+    const submit = async (e) =>  {
+     e.preventDefault();
      if(verifyEmailFormat(e)) {
         var user = {
             firstName: firstName,
@@ -41,6 +42,7 @@ export default function Register() {
             password: password,
             userType: userType,
             profilePicture: blankProfileImg,
+            coverPicture: defaultCoverImg,
             classOf: null,
         }
       try {
