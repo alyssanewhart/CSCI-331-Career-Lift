@@ -82,6 +82,10 @@ const UserSchema = new mongoose.Schema(
       //DATE
   },
 
+  userType: {
+    type:String,
+}
+
   },
   { timestamps: true }
 );

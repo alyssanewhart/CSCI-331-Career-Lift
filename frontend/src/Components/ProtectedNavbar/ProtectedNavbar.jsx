@@ -1,4 +1,4 @@
-import styles from'./ProfileTopbar.module.css'
+import styles from'./ProtectedNavbar.module.css'
 import { Search, Person, Chat, Notifications, Home, PeopleAlt, Work, Message} from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 import {Button, Navbar, Form, Nav, Container, NavDropdown, FormControl}  from 'react-bootstrap';
@@ -36,8 +36,8 @@ const Topbar = () => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
                 >
-                <Nav.Link href="#action1"><IconButton><Home class={styles.iconColor}/></IconButton></Nav.Link>
-                <Nav.Link href="#action2"><IconButton><Chat class={styles.iconColor}/></IconButton></Nav.Link>
+                <Nav.Link href="/feed"><IconButton><Home class={styles.iconColor}/></IconButton></Nav.Link>
+                <Nav.Link href="/messages"><IconButton><Chat class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action3"><IconButton><PeopleAlt class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link href="#action4"><IconButton><Notifications class={styles.iconColor}/></IconButton></Nav.Link>
                 <Nav.Link><IconButton onClick={handleLogout}><LogoutIcon class={styles.iconColor}/></IconButton></Nav.Link>

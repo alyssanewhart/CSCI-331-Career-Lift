@@ -59,7 +59,7 @@ export default function Share() {
             <div className={styles.shareWrapper}>
                 <div className={styles.shareTop}>
                     <img className={styles.shareProfileImg} 
-                    src={ user.profilePicture ? PF+user.profilePicture : PF + "person/noAvatar.png"} alt=""/>
+                    src={user.profilePicture} alt="profile picture"/>
                     <input placeholder="Make a public post, connect with others." className={styles.shareInput} ref={desc}  onChange={buttonDisabled}/>
                      
                 </div>

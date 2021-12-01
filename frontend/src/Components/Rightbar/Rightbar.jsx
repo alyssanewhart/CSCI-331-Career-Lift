@@ -159,11 +159,11 @@ export default function Rightbar({user}) {
             <div className={styles.rightbarInfo}>
           <div className={styles.rightbarInfoItem}>
             <span className={styles.rightbarInfoKey}>Currently Working at:</span>
-            <span className={styles.rightbarInfoValue}>{user.workingAt}</span>
+            <span className={styles.rightbarInfoValue}>{user.company}</span>
           </div>
           <div className={styles.rightbarInfoItem}>
-            <span className={styles.rightbarInfoKey}>Research Interest:</span>
-            <span className={styles.rightbarInfoValue}>Application of Quantum Computers</span>
+            <span className={styles.rightbarInfoKey}>Career Interest:</span>
+            <span className={styles.rightbarInfoValue}>{user.careerInterest}</span>
           </div>
           <div className={styles.rightbarInfoItem}>
             <span className={styles.rightbarInfoKey}>Looking for:</span>

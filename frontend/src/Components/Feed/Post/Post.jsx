@@ -8,8 +8,6 @@ import {format} from "timeago.js"
 import { AuthContext } from "../../../context/AuthContext";
 
 
-
-
 export default function Post({post}) {
 
   const [like,setLike] = useState(post.likes.length);
@@ -18,7 +16,7 @@ export default function Post({post}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user:currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
+ useEffect(() => {
       setIsLiked(post.likes.includes(currentUser._id))
 
   }, [currentUser._id, post.likes])
@@ -31,8 +29,6 @@ export default function Post({post}) {
     setLike(isLiked ? like-1 : like+1)
     setIsLiked(!isLiked)
   }
- 
-
 
     useEffect(() => {
         // because we can't use await in useEffects hook
@@ -51,7 +47,7 @@ export default function Post({post}) {
                 <div className={styles.postTop}>
                     <div className={styles.postTopLeft}>
                         <Link to={`/userProfile/${user.name}`}>
-                        <img className={styles.postProfileImg} src= {user.profilePicture ? PF + user.profilePicture : PF+"person/noAvatar.png"} alt=""/>
+                        <img className={styles.postProfileImg} src= {user.profilePicture} alt=""/>
                         </Link>
                         
                         

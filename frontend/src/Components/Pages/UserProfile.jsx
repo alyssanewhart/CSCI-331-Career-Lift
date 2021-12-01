@@ -1,9 +1,9 @@
 import styles from"./userProfile.module.css"
-import Topbar from "../profileTopbar/Topbar"
-import Feed from "../profileFeed/Feed"
+import Topbar from "../ProtectedNavbar/ProtectedNavbar"
+import Feed from "../Feed/Feed"
 //import Post from "../profileFeed/Post/Post"
-import Leftbar from "../profileLeftbar/Leftbar"
-import Rightbar from "../profileRightbar/Rightbar"
+import Leftbar from "../Leftbar/Leftbar"
+import Rightbar from "../Rightbar/Rightbar"
 import React, { useEffect, useState } from 'react';
 
 import axios from "axios"

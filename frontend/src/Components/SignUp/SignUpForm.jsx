@@ -45,6 +45,7 @@ export default function SignUp() {
             coverPicture: defaultCoverImg,
             classOf: null,
         }
+        console.log(user)
       try {
         await axios.post("/auth/signup", user);
         history.push("/success")
@@ -64,11 +65,11 @@ export default function SignUp() {
                         <Container>
                             <Row>
                                 <Col> 
-                                    <Form.Label class={styles.formLabel}>First Name</Form.Label>
+                                    <Form.Label required class={styles.formLabel}>First Name</Form.Label>
                                     <Form.Control class = "form-control" type="firstName" placeholder="" onChange={(e) => setfirstName(e.target.value)} />
                                 </Col>
                                 <Col> 
-                                    <Form.Label class={styles.formLabel}>Last Name</Form.Label>
+                                    <Form.Label required class={styles.formLabel}>Last Name</Form.Label>
                                     <Form.Control class = "form-control" type="lastName" placeholder="" onChange={(e) => setlastName(e.target.value)}  />
                                 </Col>
                             </Row>
@@ -81,7 +82,7 @@ export default function SignUp() {
                             <Row>
                                 <Col> 
                                     <Form.Label class={styles.formLabel}>Email</Form.Label>
-                                    <Form.Control type="email" placeholder="" onChange={(e) => setEmail(e.target.value)}/>
+                                    <Form.Control required type="email" placeholder="" onChange={(e) => setEmail(e.target.value)}/>
                                 </Col>
                             </Row>
                         </Container>
@@ -93,7 +94,7 @@ export default function SignUp() {
                             <Row>
                                 <Col> 
                                     <Form.Label class={styles.formLabel}>Password</Form.Label>
-                                    <Form.Control className="form-control" type="password" placeholder="" onChange={(e) => setPassword(e.target.value)} />
+                                    <Form.Control required className="form-control" type="password" placeholder="" onChange={(e) => setPassword(e.target.value)} />
                                 </Col>
                             </Row>
                         </Container>
@@ -102,7 +103,7 @@ export default function SignUp() {
                     <Container>
                         <Row>
                             <Col> 
-                                <Form.Select class={styles.formSelect} aria-label="User Type" onChange={(e) => setUserType(e.target.value)}>
+                                <Form.Select required class={styles.formSelect} aria-label="User Type" onChange={(e) => setUserType(e.target.value)}>
                                     <option>User Type</option>
                                     <option value="Student">Student</option>
                                     <option value="Alumni">Alumni</option>

@@ -4,7 +4,7 @@ import {Container, Row, Col, Card, Form, Button }from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import { useHistory } from "react-router";
-import Topbar from "../profileTopbar/Topbar"
+import Topbar from "../ProtectedNavbar/ProtectedNavbar"
 import axios from "axios";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
