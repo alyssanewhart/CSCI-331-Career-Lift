@@ -1,12 +1,37 @@
 import styles from"./userProfile.module.css"
-import Topbar from "../profileTopbar/Topbar"
-import Feed from "../profileFeed/Feed"
-import Post from "../profileFeed/Post/Post"
-import Leftbar from "../profileLeftbar/Leftbar"
-import Rightbar from "../profileRightbar/Rightbar"
-//import {School} from "@material-ui/icons";
+import Topbar from "../ProtectedNavbar/ProtectedNavbar"
+import Feed from "../Feed/Feed"
+//import Post from "../profileFeed/Post/Post"
+import Leftbar from "../Leftbar/Leftbar"
+import Rightbar from "../Rightbar/Rightbar"
+import React, { useEffect, useState } from 'react';
 
-export default function userProfile() {
+import axios from "axios"
+import { useParams } from "react-router"
+
+
+
+
+
+export default function UserProfile() {
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+ const [user, setUser] = useState({});
+ //magical hook for assigning to each user's page
+ const name = useParams().name;
+ 
+
+    useEffect(() => {
+        // because we can't use await in useEffects hook
+        // neeed a separate function
+        const fetchPosts =  async () => {
+            const res = await axios.get(`/users?name=${name}`)
+             setUser(res.data);
+        };
+            
+        fetchPosts();      
+    }, [name]);
+
     return ( 
     <>
         <div className = {styles.userProfile}>
@@ -14,22 +39,24 @@ export default function userProfile() {
             <div className={styles.userProfileRight}>
                 <div className = {styles.userProfileRightTop}>
                     <div className = {styles.userProfileCover}>
-                        <img className = {styles.userProfileCoverImg}src = "assets/person/coverImg.jpg"alt = "cover picture"/>
-                        <img className = {styles.userProfileUserImg}src = "assets/person/2.jpeg"alt = "user picture"/>
+                        <img className = {styles.userProfileCoverImg}src = {user.coverPicture} alt = "cover picture"/>
+                        <img className = {styles.userProfileUserImg}src = {user.profilePicture} alt = "user picture"/>
                     </div>
                     <div className={styles.userProfileInfo}>
-                        <h4 className={styles.userProfileInfoName}>Nelson Jacob</h4>
-                        <div className={styles.userProfileInfoDesc}> <i class="fas fa-chalkboard-teacher userProfileIcon"></i>Alumni/Mentor</div>
-                        <div className={styles.userProfileInfoDesc}><i class="fas fa-graduation-cap userProfileIcon"></i>Class of 2006</div>
+                        <h4 className={styles.userProfileInfoName}>{user.name}</h4>
+                        <div className={styles.userProfileInfoDesc}> <i class="fas fa-chalkboard-teacher userProfileIcon"></i>{user.userType}</div>
+                        <div className={styles.userProfileInfoDesc}><i class="fas fa-graduation-cap userProfileIcon"></i>{user.classOf}</div>
                     </div>
-                    <button className={styles.userProfileAddButton} type="">Add</button>
+                    {/* <button className={styles.userProfileAddButton} type="">Add</button> */}
                 </div> 
                 <div className = {styles.userProfileRightBottom} >
-                    <Feed/>
-                    <Rightbar userProfile/>
+                    {/* <Feed />
+                    //next Step */}
+                    <Feed name={name}/>
+                    <Rightbar user={user}/>
                 </div>  
             </div>
         </div>  
-    </>
+   </>
     );
 }

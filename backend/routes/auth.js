@@ -1,16 +1,13 @@
-import express from "express";
-import user from "../models/user.js";
-import bcrypt from "bcrypt";
-const router = express.Router();
+const router = require("express").Router();
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
-/* router.route("/").get((req,res) => res.send("hello world")) test if connected */
-
-// sign up Route
+// Sign Up Route
 router.post("/signup", async (req, res)=> {
     
     // check if email already in use
     try {
-        let existingUser = await user.findOne({ email: req.body.email })
+        let existingUser = await User.findOne({ email: req.body.email })
 
         // if email already in use 
         if (existingUser) {
@@ -27,17 +24,18 @@ router.post("/signup", async (req, res)=> {
             const name = req.body.firstName + " " + req.body.lastName;
 
             // create new user
-            const newUser =  new user({ 
+            const newUser =  new User({ 
                 name: name, 
                 email:req.body.email,
                 password: hashedPassword,
                 userType: req.body.userType,
-                profilePicture: req.body.profilePicture
+                profilePicture: req.body.profilePicture,
+                coverPicture: req.body.coverPicture,
             }); 
 
             // Add new user to DB
             try {
-                const user = await newUser.save();
+                const savedUser = await newUser.save();
                 res.status(200).json({ status: "success" })
         
                // catch error adding new user to DB
@@ -52,30 +50,19 @@ router.post("/signup", async (req, res)=> {
         }
     })
 
+// Login
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    !user && res.status(404).json("user not found");
 
-// login route
-router.post("/login", async (req, res)=>{
-try{
-    // check email
-    const validEmail =  await user.findOne({email: req.body.email});
+    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    !validPassword && res.status(400).json("wrong password")
 
-    // check password by hashing with bcrypt and comparing
-    const validPassword = await bcrypt.compare(req.body.password, validEmail.password);
+    res.status(200).json(user)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
 
-    // if either password or email is invalid
-    if ((!validPassword) || (!validEmail)) { 
-        res.json({status: "invalid login credentials"})  
-    } 
-
-    // if valid credentials respond with "success" and user id
-    else { 
-        res.status(200).json({ status: "success", user: validEmail}) 
-        
-    }
-    
-    } catch(e) {
-        res.status(500).json(e);
-    }
-}) 
-
-export default router;
+module.exports = router;
