@@ -1,5 +1,6 @@
   .userProfile {
     display: flex;
+    overflow: hidden;
     
    
 }
