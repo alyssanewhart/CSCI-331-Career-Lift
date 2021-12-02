@@ -1,7 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 #CreateProfileWrapper {
-    padding-top: 100px;
     width: 500px;
-    height: 200px;
+    height: 600px;
     display: block;
     margin: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+#profileimage {
+    margin-left: 20px;
+    border-radius: 15%;
+    width: 150px;
+    height: 150px;
+   /* border: 5px solid darkgray; */
+    border: 3px solid white;
+    box-shadow: -2px 3px 10px 0px rgba(0,0,0,0.5);
+    clear: none;
+}
+
+#cardWrapper {
+    width: 100%;
+    height: 90%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+#nameh1 {
+    padding-top: 10px;
+    padding-right: 100px;
+    font-size: 20px;
+    color: black;
+}
+
+#pageWrapper {
+    padding-top: 50px;
+}
+
+#inputButton {
+    clear: right;
+    width: 80px;
+    padding-right: 60px;
+}
+
+#h1paragraph {
+    margin-top: 20px;
+    color: black;
+    
+}
+
+#imageUploadDiv {
+    margin-top: 200px;
+    margin-left: 20px;
+    width: 20px;
+    display: inline;
+}
+
+#cameraIcon {
+    margin-left: 130px;
+    clear: right;
+} 
+
+#saveBtn{
+    margin-top: 30px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.formLabel{
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+#classOf {
+    padding-top: 0px;
 }

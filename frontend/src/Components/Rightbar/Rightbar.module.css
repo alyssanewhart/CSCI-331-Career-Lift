@@ -1,0 +1,239 @@
+.rightbar{
+    flex:2;
+    margin-top: 0px;
+    margin-right: 50px;
+    top: 80px;
+    position: sticky;
+    margin-bottom: 5px;
+    margin-left: 50px;
+    height: calc(100vh - 120px);
+
+
+        
+
+    
+}
+
+.rightbarWrapper{
+    padding: 20px;
+    top: 400px;
+}
+
+.rightbarTop{
+    display: block;
+    padding: 20px;
+    justify-content:center;
+    position: sticky;
+    border-radius: 10px;
+    height: calc(100vh - 160px);
+    border: 1px solid lightgray;
+
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+background-color: rgb(255, 255, 255);
+}
+.rightbarTopTitle{
+   display: flex;
+   align-items:center;
+   height: 5vh; 
+   text-align: center;
+}
+.featuredText{
+    display: flex;
+    margin-left:5px;
+}
+.featuredPostList{
+    margin-top:10px;
+    padding: 0px;
+}
+.featuredStart{
+    color: #4791fd;
+}
+.featuredPostItem{
+    height:55px;
+    width: 95%;
+    /* align-items:center; */
+    /* justify-content:space-around; */
+    display:flex;
+    padding:10px;
+    border:1px solid rgba(71,145,253, 0.2);
+    border-radius: 10px;
+    margin-bottom:10px;
+    cursor: pointer;
+    position: relative;
+    background-color: rgb(252, 252, 252);
+    transition: all 0.75s ease;
+    text-decoration: none;
+
+}
+
+.featuredPostItem:hover{
+        border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+.featuredPostItemTop{
+    /* display:flex; */
+     display: flex;
+    margin-left: 0px;
+    align-items:center;
+    justify-content:end;
+}
+
+.featuredPostImg{
+    width:40px;
+    float: left;
+    height:30px;
+    border-radius:3px;
+    margin-right:10px;
+    left: 0;
+    top: 50%;
+}
+.featuredPostText{
+    font-size:12.5px;
+   
+    float: right;
+    margin: 0px;
+    text-decoration: none;
+    color: black;
+    opacity: 0.7;
+}
+.featuredPostItemBottom{
+    display:flex;
+    justify-content:center;
+}
+.featuredPostTimeText{
+    font-size:12px;
+    opacity:75%;
+    padding-left:10px;
+    padding-top:2px;
+}
+.buttonWrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.featuredPostButton{
+    margin-top:10px;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background-color: #1877f2;
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: white;
+}
+.featuredPostButton:hover{
+    background-color: #fff;
+    color: #1877f2;
+    border: 1px solid #1877f2;
+}
+.rightbarBottomTitle{
+    margin-top:20px;
+}
+.rightbarConnectionList{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+.rightbarConnection{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    margin-top:10px;
+
+}
+.rightbarConnectButton{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    /* border:none; */
+    border-radius: 15px;
+    padding: 5px 15px;
+    color: #1877f2;
+    border: 1px solid #1877f2;
+    font-weight: 500;
+
+
+}
+.rightbarConnectButton:hover{
+    background-color: #1877f2;
+    color: #fff;
+}
+
+.rightbarImgContainer{
+    margin-right:10px;
+    position:relative;
+}
+.rightbarProfileImg{
+    width:40px;
+    height:40px;
+    object-fit:cover;
+    border-radius:50%;
+}
+.rightbaronlineBadge{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background-color:limegreen;
+    position:absolute;
+    top:-2px;
+    right:0px;
+    border: 1px solid #fff;
+}
+.rightbarUserName{
+    font-weight:500;
+}
+.rightbarTitle{
+    margin-bottom: 20px;
+}
+
+.rightbarFriendList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.rightbarTitle{
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.rightbarInfo{
+  margin-bottom: 30px;
+}
+
+.rightbarInfoItem{
+  margin-bottom: 10px;
+}
+
+.rightbarInfoKey{
+  font-weight: 500;
+  margin-right: 15px;
+  color: #555;
+}
+
+.rightbarInfoValue{
+  font-weight: 300;
+}
+
+.rightbarFollowings{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.rightbarFollowing{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.rightbarFollowingImg{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}

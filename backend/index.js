@@ -1,15 +1,14 @@
-import express from "express";
-
+const express = require("express");
 const app = express();
-
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import helmet from "helmet";
-
-
-import  userRoute from "./routes/users.js";
-import  authRoute from "./routes/auth.js";
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const helmet = require("helmet");
+const morgan = require("morgan")
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
+const conversationRoute = require("./routes/conversations");
+const messageRoute = require("./routes/messages");
 
 
 dotenv.config();
@@ -28,12 +27,12 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-
-//routes
-
-app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 
 app.listen(8800, () =>{
-    console.log("Server is running")
+  console.log("Server is running")
 })
