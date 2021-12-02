@@ -1,14 +1,11 @@
-import http from "../users-http-common";
+import http from "../http-common";
 
-class AuthDataService {
+class UserDataService {
 
-    updateUser(id, data) {
-        return http.put(id, data);
+    createUser(data) {
+        return http.post("/user", data);
     }
 
-    getUser(id) {
-        return http.get(id);
-    }
 }
 
-export default new AuthDataService();
+export default new UserDataService();
