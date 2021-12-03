@@ -33,6 +33,6 @@ app.use("/api/posts", postRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 
-app.listen(process.env.PORT, () =>{
+app.listen(8800, () =>{
   console.log("Server is running")
 })
