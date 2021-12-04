@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const axiosObject =  axios.create({
-    baseURL: "https://carerlift2.herokuapp.com/api/"
+    baseURL: "https://careerlitz.herokuapp.com/api/"
 })
