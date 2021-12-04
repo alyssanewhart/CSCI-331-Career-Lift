@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 
 import axios from "axios"
 import { useParams } from "react-router"
+import { axiosObject } from "../../config"
 
 
 
@@ -25,7 +26,7 @@ export default function UserProfile() {
         // because we can't use await in useEffects hook
         // neeed a separate function
         const fetchPosts =  async () => {
-            const res = await axios.get(`/users?name=${name}`)
+            const res = await axiosObject.get(`/users?name=${name}`)
              setUser(res.data);
         };
             
