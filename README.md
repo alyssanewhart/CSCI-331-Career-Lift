@@ -1,9 +1,6 @@
-# CSCI 331 Project - CareerLift MERN
+# CSCI 331 Project - CareerLift 
 
-To fix material ui icons: 
-* npm install @mui/icons-material
-* npm install @mui/material
-* npm i @emotion/styled
-* npm i @emotion/react
+CareerLift is social networking platform built, using MERN stack, for students, professors, and alumni to connect, share advice, and post job opportunities.
+
 
 [Class presentation](presentation/csci331.pdf)
