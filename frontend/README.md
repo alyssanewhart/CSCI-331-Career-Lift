@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To fix material ui icons: 
+* npm install @mui/icons-material
+* npm install @mui/material
+* npm i @emotion/styled
+* npm i @emotion/react
+
 ## Available Scripts
 
 In the project directory, you can run:
