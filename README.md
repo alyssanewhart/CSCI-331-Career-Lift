@@ -6,4 +6,4 @@ To fix material ui icons:
 * npm i @emotion/styled
 * npm i @emotion/react
 
-[Link to presentation](presentation/csci331.pdf)
+[Link to class presentation](presentation/csci331.pdf)
