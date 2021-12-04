@@ -1,18 +1,22 @@
 {
-  "name": "careerlift",
+  "name": "rest-api",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.16.1"
-  },
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node backend/index.js"
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
   },
+  
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+ 
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",

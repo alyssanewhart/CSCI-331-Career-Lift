@@ -6,10 +6,10 @@ import SignUpForm from './Components//SignUp/SignUpForm';
 import { BrowserRouter as Router, Switch, Route, Redirect  } from 'react-router-dom';
 import Home from './Components/Pages/Home.jsx';
 import Feed from './Components/Pages/GeneralFeed';
-import userProfile from './Components/Pages/UserProfile';
+// import userProfile from './Components/Pages/UserProfile';
 import { AuthContext } from "./context/AuthContext"
 import { useContext } from "react";
-import UserProfile from './Components/Pages/UserProfile';
+import UserProfile from './Components/Pages/userProfile';
 import Messages from './Components/Pages/Messages/Messages';
 import SignUpSuccess from './Components/SignUp/Success';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
