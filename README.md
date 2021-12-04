@@ -6,4 +6,5 @@ CareerLift is social networking platform built, using MERN stack, for students, 
 * [Class presentation](presentation/csci331.pdf)
 * [Project management](https://github.com/alyssanewhart/combined-app/projects/1)
 
-![alt text](screenshots/homepage.png)
+![home page](screenshots/homepage.png)
+![sign up](screenshots/signup.png)
