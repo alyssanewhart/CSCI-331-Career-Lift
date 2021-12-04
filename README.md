@@ -12,3 +12,4 @@ CareerLift is social networking platform built, using MERN stack, for students, 
 ![login](screenshots/login.png)
 ![login](screenshots/editprofile.png)
 ![user profile](screenshots/userprofile.png)
+![fedd](screenshots/feed.png)
