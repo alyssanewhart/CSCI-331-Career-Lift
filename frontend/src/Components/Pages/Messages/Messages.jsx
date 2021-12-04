@@ -1,5 +1,5 @@
 import styles from './Messages.module.css'
-import Topbar from '../../profileTopbar/Topbar'
+import Topbar from '../../ProtectedNavbar/ProtectedNavbar'
 import { MessageRounded, SearchOutlined } from '@material-ui/icons';
 import Conversation from '../../Conversation/Conversation';
 import Chat from '../../chat/Chat';
