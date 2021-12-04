@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Logo from '../Images/CareerLift_LogoDraft2.png';
 import blankProfileImg from "../Images/blank_profile.png";
 import defaultCoverImg from "../Images/default-cover-image.jpg";
-
+import { axiosObject } from "../../config";
 export default function SignUp() {
   const [firstName, setfirstName] = useState("");
       const [lastName, setlastName] = useState("");    
@@ -47,7 +47,7 @@ export default function SignUp() {
         }
         console.log(user)
       try {
-        await axios.post("/auth/signup", user);
+        await axiosObject.post("/auth/signup", user);
         history.push("/success")
       } catch (err) {
         console.log(err);

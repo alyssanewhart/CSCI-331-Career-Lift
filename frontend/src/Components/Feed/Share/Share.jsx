@@ -3,6 +3,7 @@ import {PermMedia, Label,Room,Attachment, Cancel } from "@material-ui/icons"
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import axios from "axios";
+import { axiosObject } from "../../../config";
 
 export default function Share() {
 
@@ -26,14 +27,14 @@ export default function Share() {
          data.append("name", fileName)
          newPost.img =fileName;
          try{
-             await axios.post("/upload", data)
+             await axiosObject.post("/upload", data)
          }catch(err){
              console.log(err)
          }
      }
 
      try{
-         await axios.post("/posts", newPost)
+         await axiosObject.post("/posts", newPost)
          //post context to upload state.
          window.location.reload()
 

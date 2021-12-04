@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react"
 //import { Posts } from "../../dummyData"
 import axios from "axios"
 import {AuthContext} from "../../context/AuthContext"
+import { axiosObject } from "../../config"
 
 
 
@@ -20,11 +21,11 @@ export default function Feed({ name }) //
         const fetchPosts =  async () => {
            
              const res = name 
-                    ? await axios.get("/posts/UserProfile/"+ name)
+                    ? await axiosObject.get("/posts/UserProfile/"+ name)
                     //
                     //Add User ID
                     //
-                    : await axios.get("/posts/feed/"+user._id);
+                    : await axiosObject.get("/posts/feed/"+user._id);
              setPosts(res.data.sort((x1, x2) => {
                  return new Date(x2.createdAt) - new Date(x1.createdAt);
              }))

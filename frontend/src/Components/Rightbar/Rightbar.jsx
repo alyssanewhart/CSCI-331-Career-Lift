@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { axiosObject } from "../../config";
 
 
 export default function Rightbar({user}) {
@@ -21,7 +22,7 @@ export default function Rightbar({user}) {
   useEffect(() => {
     const getConncetions = async () => {
       try {
-        const connectionList = await axios.get("/users/connections/"+user._id);
+        const connectionList = await axiosObject.get("/users/connections/"+user._id);
         setConnections(connectionList.data)
       }catch(err){
         console.log(err)
@@ -35,10 +36,10 @@ export default function Rightbar({user}) {
   const followHandler= async () =>{
     try{
       if(followed){
-        await axios.put(`/users/${user._id}/unfollow`, {userId:currentUser._id,});
+        await axiosObject.put(`/users/${user._id}/unfollow`, {userId:currentUser._id,});
         dispatch({type:"UNFOLLOW", payload:user._id});
       }else{
-        await axios.put(`/users/${user._id}/follow`, {userId:currentUser._id,});
+        await axiosObject.put(`/users/${user._id}/follow`, {userId:currentUser._id,});
          dispatch({type:"FOLLOW", payload:user._id})
       }
 
